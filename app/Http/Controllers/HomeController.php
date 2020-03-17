@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Order;
+use App\Item;
+use App\City;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $oc=Order::order_count();
+        $ic=Item::item_count();
+        return view('home',compact('oc','ic'));
     }
 }

@@ -6,7 +6,7 @@ php artisan crud:generate Citys --fields="name#string; deliverycompany_id#intege
 
 php artisan crud:generate Categorys --fields="name#string; item_code#string;" --view-path=Admin --controller-namespace=Admin --form-helper=html
 
-php artisan crud:generate items --fields="photo#string; category_id#integer; product_code#string; description#string; quantity#integer; dolour_rate#double; product_cost#double; discount#double; tax#double; clearance_charge#double; slmarket_price#double; selling_price#double" --foreign-keys="category_id#id#categorys " --relationships="item_id#id#items#HasOneOrMany#App\Item" --view-path=Admin --controller-namespace=Admin --form-helper=html
+php artisan crud:generate items --fields="photo#file; category_id#integer; product_code#string; description#string; quantity#integer; dolour_rate#double; product_cost#double; discount#double; tax#double; clearance_charge#double; slmarket_price#double; selling_price#double" --foreign-keys="category_id#id#categorys " --relationships="item_id#id#items#HasOneOrMany#App\Item" --view-path=Admin --controller-namespace=Admin --form-helper=html
 
 photo
 category_id ->f.k->category

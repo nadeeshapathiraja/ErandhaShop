@@ -17,7 +17,7 @@ class CreateItemsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('photo')->nullable();
-            $table->integer('category_id')->nullable()->unsigned();
+            $table->integer('category_id')->nullable();
             $table->string('product_code')->nullable();
             $table->string('description')->nullable();
             $table->integer('quantity')->nullable();
@@ -28,8 +28,9 @@ class CreateItemsTable extends Migration
             $table->double('clearance_charge')->nullable();
             $table->double('slmarket_price')->nullable();
             $table->double('selling_price')->nullable();
-            $table->foreign('category_id')->references('id')->on('categorys')->sign;
+            $table->foreign('category_id')->references('id')->on('categorys');
             });
+            
     }
 
     /**

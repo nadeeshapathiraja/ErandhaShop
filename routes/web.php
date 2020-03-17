@@ -34,11 +34,8 @@ Route::resource('zones', 'Admin\\ZonesController');
 Route::resource('deliverycompanys', 'Admin\\DeliverycompanysController');
 Route::resource('citys', 'Admin\\CitysController');
 Route::resource('categorys', 'Admin\\CategorysController');
-Route::resource('items', 'Admin\\itemsController');
 Route::resource('orders', 'Admin\\OrdersController');
-
-
 Route::resource('paymenttypes', 'Admin\\PaymenttypesController');
 Route::resource('moneytransactions', 'Admin\\MoneytransactionsController');
-
 Route::resource('supplyers', 'Admin\\SupplyersController');
+Route::resource('items', 'Admin\\itemsController');

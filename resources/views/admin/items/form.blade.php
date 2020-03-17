@@ -1,6 +1,6 @@
 <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
     <label for="photo" class="control-label">{{ 'Photo' }}</label>
-    <input class="form-control" name="photo" type="text" id="photo" value="{{ isset($item->photo) ? $item->photo : ''}}" >
+    <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($item->photo) ? $item->photo : ''}}" >
     {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('category_id') ? 'has-error' : ''}}">

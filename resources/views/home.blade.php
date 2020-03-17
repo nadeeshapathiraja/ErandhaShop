@@ -26,7 +26,7 @@
                             <div class="well">
                                 <h4>Item Count</h4>
                                 <div class="alert alert-success">
-                                    No of Items: {{ 1 }}
+                                    No of Items: {{ $ic }}
                                 </div>
                             </div>
                         </div>
@@ -35,19 +35,19 @@
                             <div class="well">
                                 <h4>Order Count</h4>
                                 <div class="alert alert-primary">
-                                    No of Orders: {{ 2 }}
+                                    No of Orders: {{ $oc }}
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-sm-4">
+                        {{-- <div class="col-sm-4">
                             <div class="well">
                                 <h4>Rejection Count</h4>
                                 <div class="alert alert-danger">
-                                    Rejected Orders: {{ 3 }}
+                                    rejected Orders: {{ $rc }}
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                     </div>
                 </div>

@@ -80,7 +80,7 @@
             <ul class="navbar-nav">
 
               <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="{{ url('/home') }}">Home</a>
               </li>
 
               <li class="nav-item">
@@ -96,7 +96,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}"></a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 

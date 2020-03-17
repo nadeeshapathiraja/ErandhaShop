@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 
 class itemsController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -53,6 +52,10 @@ class itemsController extends Controller
     {
 
         $requestData = $request->all();
+                if ($request->hasFile('photo')) {
+            $requestData['photo'] = $request->file('photo')
+                ->store('uploads', 'public');
+        }
 
         item::create($requestData);
 
@@ -80,6 +83,10 @@ class itemsController extends Controller
     {
 
         $requestData = $request->all();
+                if ($request->hasFile('photo')) {
+            $requestData['photo'] = $request->file('photo')
+                ->store('uploads', 'public');
+        }
 
         $item = item::findOrFail($id);
         $item->update($requestData);
