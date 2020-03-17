@@ -1,0 +1,42 @@
+php artisan crud:generate Zones --fields="name#string;" --view-path=Admin --controller-namespace=Admin --form-helper=html
+
+php artisan crud:generate Deliverycompanys --fields="name#string " --view-path=Admin --controller-namespace=Admin --form-helper=html
+
+php artisan crud:generate Citys --fields="name#string; deliverycompany_id#integer; zone_id#integer; postal_code#integer; price#double" --foreign-keys="zone_id#id#zones " --relationships="zone_id#id#zones#HasOne#App\Zone" --view-path=Admin --controller-namespace=Admin --form-helper=html
+
+php artisan crud:generate Categorys --fields="name#string; item_code#string;" --view-path=Admin --controller-namespace=Admin --form-helper=html
+
+php artisan crud:generate items --fields="photo#string; category_id#integer; product_code#string; description#string; quantity#integer; dolour_rate#double; product_cost#double; discount#double; tax#double; clearance_charge#double; slmarket_price#double; selling_price#double" --foreign-keys="category_id#id#categorys " --relationships="item_id#id#items#HasOneOrMany#App\Item" --view-path=Admin --controller-namespace=Admin --form-helper=html
+
+photo
+category_id ->f.k->category
+product_code
+description
+quantity
+product_cost
+tax
+discount
+clearance_charge
+slmarket_price
+selling_price
+
+php artisan crud:generate Orders --fields="date#date; order_id#integer; deliverycompany_id#integer; shipment_code#string; name#string; order_source#string; item_id#integer; quantity#integer; price#double; Location_address#string; city_id#integer; telephone#string; notes#string; delivery_process#string" --foreign-keys="deliverycompany_id#id#deliverycompanys; item_id#id#items; city_id#id#citys " --relationships="deliverycompany_id#id#deliverycompanys#HasOne#App\Deliverycompany, item_id#id#items#HasMany#App\Item" --view-path=admin --controller-namespace=Admin --route-group=admin --form-helper=html
+
+shipmentcode => reference number
+item id->selling price/name/
+city_id->delivery fee
+delivery_process->onprocess/dispatch/Deliverd/Return
+
+
+php artisan crud:generate Supplyers --fields="name#string; country#string; item_id#integer; quantity#integer " --foreign-keys="item_id#id#items " --relationships="item_id#id#items#HasMany#App\Item" --view-path=Admin --controller-namespace=Admin --form-helper=html
+
+
+
+php artisan crud:generate Paymenttypes --fields="order_id#integer; name#string; deposit_type#string; amount#double " --foreign-keys="order_id#id#orders " --relationships="order_id#id#orders#HasOne#App\Order" --view-path=Admin --controller-namespace=Admin --form-helper=html
+
+
+php artisan crud:generate Moneytransactions --fields="item_id#integer; total_clearance#double; value_with_offer#double; total_cost#double; rs_value#double; product_cost#double; total_product_cost#double " --foreign-keys="item_id#id#items " --relationships="item_id#id#items#HasOneOrMany#App\Item" --view-path=Admin --controller-namespace=Admin --form-helper=html
+
+
+
+
