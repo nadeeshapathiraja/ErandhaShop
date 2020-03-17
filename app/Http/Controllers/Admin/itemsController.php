@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\item;
+use App\Category;
 use Illuminate\Http\Request;
 
 class itemsController extends Controller
@@ -38,13 +40,16 @@ class itemsController extends Controller
             $items = item::latest()->paginate($perPage);
         }
 
+
         return view('Admin.items.index', compact('items'));
     }
 
 
     public function create()
     {
-        return view('Admin.items.create');
+        $allcategorys =Category::all();
+
+        return view('Admin.items.create',compact('allcategorys'));
     }
 
 

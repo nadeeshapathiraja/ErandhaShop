@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class item extends Model
 {
-    
+
     protected $table = 'items';
 
 
@@ -16,5 +16,9 @@ class item extends Model
 
     public static function item_count(){
         return Item::count();
+    }
+
+    public function category(){
+        return $this->belongsTo('App\Category');
     }
 }
