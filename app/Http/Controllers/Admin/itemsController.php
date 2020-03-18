@@ -8,6 +8,7 @@ use App\Http\Requests;
 
 use App\item;
 use App\Category;
+use App\Zone;
 use Illuminate\Http\Request;
 
 class itemsController extends Controller
@@ -48,8 +49,9 @@ class itemsController extends Controller
     public function create()
     {
         $allcategorys =Category::all();
+        $zones= Zone::all();
 
-        return view('Admin.items.create',compact('allcategorys'));
+        return view('Admin.items.create',compact('allcategorys','zones'));
     }
 
 

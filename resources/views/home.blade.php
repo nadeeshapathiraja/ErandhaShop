@@ -15,39 +15,69 @@
                     @endif
 
                     <div class="well">
-                        <h3>Admin Dashboard</h3>
+                        <h2 style="text-align: center">Admin Dashboard</h2>
                     </div>
 
-                    <br/><br/><br/>
+                    <br/><br/>
 
                     <div class="row">
+                            <div class="col-sm-6">
+                                <div class="well">
+                                    <h4>Item Count</h4>
+                                    <div class="alert alert-info">
+                                        No of Items: {{ $ic }}
+                                    </div>
+                                </div>
+                            </div>
 
-                        <div class="col-sm-4">
-                            <div class="well">
-                                <h4>Item Count</h4>
-                                <div class="alert alert-success">
-                                    No of Items: {{ $ic }}
+                            <div class="col-sm-6">
+                                <div class="well">
+                                    <h4>Order Count</h4>
+                                    <div class="alert alert-info">
+                                        No of Orders: {{ $oc }}
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div><br/><br/>
+                    <div>
+                        <h2 style="text-align: center">Order Handling</h2><br/>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="well">
+                                    <h4>On Process Orders</h4>
+                                    <div class="alert alert-primary">
+                                        On Process: {{ 2 }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="well">
+                                    <h4>Dispatch Orders</h4>
+                                    <div class="alert alert-warning">
+                                        Dispatch Orders: {{ 3 }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-sm-4">
-                            <div class="well">
-                                <h4>Order Count</h4>
-                                <div class="alert alert-primary">
-                                    No of Orders: {{ $oc }}
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="well">
+                                    <h4>Deliverd Orders</h4>
+                                    <div class="alert alert-success">
+                                        Deliverd: {{ 2 }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="well">
+                                    <h4>Return Orders</h4>
+                                    <div class="alert alert-danger">
+                                        Returns: {{ 3 }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        {{-- <div class="col-sm-4">
-                            <div class="well">
-                                <h4>Rejection Count</h4>
-                                <div class="alert alert-danger">
-                                    rejected Orders: {{ $rc }}
-                                </div>
-                            </div>
-                        </div> --}}
 
                     </div>
                 </div>

@@ -27,5 +27,9 @@ class City extends Model
      */
     protected $fillable = ['name', 'deliverycompany_id', 'zone_id', 'postal_code', 'price'];
 
-    
+    public function deliverycompany(){
+        return $this->belongsTo('App\Deliverycompany');
+    }
+
+
 }

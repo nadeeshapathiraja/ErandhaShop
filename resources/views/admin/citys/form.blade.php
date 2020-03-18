@@ -5,12 +5,28 @@
 </div>
 <div class="form-group {{ $errors->has('deliverycompany_id') ? 'has-error' : ''}}">
     <label for="deliverycompany_id" class="control-label">{{ 'Deliverycompany Id' }}</label>
-    <input class="form-control" name="deliverycompany_id" type="number" id="deliverycompany_id" value="{{ isset($city->deliverycompany_id) ? $city->deliverycompany_id : ''}}" >
+    <select class="form-control" name="deliverycompany_id" id="deliverycompany_id" value="{{ isset($item->deliverycompany_id) ? $item->deliverycompany_id : ''}}">
+        @foreach ($deliverycompanys as $deliverycompany)
+            @if($formMode === 'edit')
+                <option value="{{ $deliverycompany->id }}" {{ ( $deliverycompany->id == $item->deliverycompany_id) ? 'selected' : '' }}>{{ $deliverycompany->name }}</option>
+            @else
+                <option value="{{ $deliverycompany->id }}">{{ $deliverycompany->name }}</option>
+            @endif
+        @endforeach
+    </select>
     {!! $errors->first('deliverycompany_id', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('zone_id') ? 'has-error' : ''}}">
     <label for="zone_id" class="control-label">{{ 'Zone Id' }}</label>
-    <input class="form-control" name="zone_id" type="number" id="zone_id" value="{{ isset($city->zone_id) ? $city->zone_id : ''}}" >
+    <select class="form-control" name="zone_id" id="zone_id" value="{{ isset($item->zone_id) ? $item->zone_id : ''}}">
+        @foreach ($zones as $zone)
+            @if($formMode === 'edit')
+                <option value="{{ $zone->id }}" {{ ( $zone->id == $item->zone_id) ? 'selected' : '' }}>{{ $zone->name }}</option>
+            @else
+                <option value="{{ $zone->id }}">{{ $zone->name }}</option>
+            @endif
+        @endforeach
+    </select>
     {!! $errors->first('zone_id', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('postal_code') ? 'has-error' : ''}}">
