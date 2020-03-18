@@ -2,9 +2,8 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 
-class CreateCategorysTable extends Migration
+class CreateClientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +12,14 @@ class CreateCategorysTable extends Migration
      */
     public function up()
     {
-        Schema::create('categorys', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('name')->nullable();
-            $table->string('item_code')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('comment')->nullable();
             });
     }
 
@@ -28,6 +30,6 @@ class CreateCategorysTable extends Migration
      */
     public function down()
     {
-        Schema::drop('categorys');
+        Schema::drop('clients');
     }
 }

@@ -33,6 +33,7 @@ class DeliverycompanysController extends Controller
 
     public function create()
     {
+        
         return view('Admin.deliverycompanys.create');
     }
 

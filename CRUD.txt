@@ -37,6 +37,6 @@ php artisan crud:generate Paymenttypes --fields="order_id#integer; name#string; 
 
 php artisan crud:generate Moneytransactions --fields="item_id#integer; total_clearance#double; value_with_offer#double; total_cost#double; rs_value#double; product_cost#double; total_product_cost#double " --foreign-keys="item_id#id#items " --relationships="item_id#id#items#HasOneOrMany#App\Item" --view-path=Admin --controller-namespace=Admin --form-helper=html
 
-
+php artisan crud:generate Clients --fields="name#string; email#string; phone#string; address#string; comment#string" --view-path=Admin --controller-namespace=Admin --form-helper=html
 
 
