@@ -25,9 +25,15 @@
     {!! $errors->first('product_code', '<p class="help-block">:message</p>') !!}
 </div>
 
+<div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
+    <label for="name" class="control-label">{{ 'Product Name' }}</label>
+    <input class="form-control" name="name" type="text" id="name" value="{{ isset($item->name) ? $item->name : ''}}" >
+    {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
+</div>
+
 <div class="form-group {{ $errors->has('description') ? 'has-error' : ''}}">
     <label for="description" class="control-label">{{ 'Description' }}</label>
-    <input class="form-control" name="description" type="text" id="description" value="{{ isset($item->description) ? $item->description : ''}}" >
+    <textarea class="form-control" name="description" type="text" id="description" value="{{ isset($item->description) ? $item->description : ''}}" ></textarea>
     {!! $errors->first('description', '<p class="help-block">:message</p>') !!}
 </div>
 
@@ -41,7 +47,7 @@
     <label for="dolour_rate" class="control-label">{{ 'Dolour Rate' }}</label>
     <div class="input-group-prepend">
         <span class="input-group-text">Rs</span>
-        <input class="form-control" name="dolour_rate" type="number" id="dolour_rate" value="{{ isset($item->dolour_rate) ? $item->dolour_rate : ''}}" >
+        <input class="form-control" name="dolour_rate" type="text" id="dolour_rate" value="{{ isset($item->dolour_rate) ? $item->dolour_rate : ''}}" >
     </div>
     {!! $errors->first('dolour_rate', '<p class="help-block">:message</p>') !!}
 </div>
@@ -50,7 +56,7 @@
     <label for="product_cost" class="control-label">{{ 'Product Cost' }}</label>
     <div class="input-group-prepend">
         <span class="input-group-text">$</span>
-        <input class="form-control" name="product_cost" type="number" id="product_cost" value="{{ isset($item->product_cost) ? $item->product_cost : ''}}" >
+        <input class="form-control" name="product_cost" type="text" id="product_cost" value="{{ isset($item->product_cost) ? $item->product_cost : ''}}" >
     </div>
     {!! $errors->first('product_cost', '<p class="help-block">:message</p>') !!}
 </div>
@@ -59,7 +65,7 @@
     <label for="discount" class="control-label">{{ 'Discount' }}</label>
     <div class="input-group-prepend">
         <span class="input-group-text">$</span>
-        <input class="form-control" name="discount" type="number" id="discount" value="{{ isset($item->discount) ? $item->discount : ''}}" >
+        <input class="form-control" name="discount" type="text" id="discount" value="{{ isset($item->discount) ? $item->discount : ''}}" >
     </div>
     {!! $errors->first('discount', '<p class="help-block">:message</p>') !!}
 </div>
@@ -68,7 +74,7 @@
     <label for="tax" class="control-label">{{ 'Tax' }}</label>
     <div class="input-group-prepend">
         <span class="input-group-text">$</span>
-        <input class="form-control" name="tax" type="number" id="tax" value="{{ isset($item->tax) ? $item->tax : ''}}" >
+        <input class="form-control" name="tax" type="text" id="tax" value="{{ isset($item->tax) ? $item->tax : ''}}" >
     </div>
     {!! $errors->first('tax', '<p class="help-block">:message</p>') !!}
 </div>
@@ -77,7 +83,7 @@
     <label for="clearance_charge" class="control-label">{{ 'Clearance Charge' }}</label>
     <div class="input-group-prepend">
         <span class="input-group-text">Rs</span>
-        <input class="form-control" name="clearance_charge" type="number" id="clearance_charge" value="{{ isset($item->clearance_charge) ? $item->clearance_charge : ''}}" >
+        <input class="form-control" name="clearance_charge" type="text" id="clearance_charge" value="{{ isset($item->clearance_charge) ? $item->clearance_charge : ''}}" >
     </div>
     {!! $errors->first('clearance_charge', '<p class="help-block">:message</p>') !!}
 </div>
@@ -86,7 +92,7 @@
     <label for="slmarket_price" class="control-label">{{ 'Slmarket Price' }}</label>
     <div class="input-group-prepend">
         <span class="input-group-text">Rs</span>
-        <input class="form-control" name="slmarket_price" type="number" id="slmarket_price" value="{{ isset($item->slmarket_price) ? $item->slmarket_price : ''}}" >
+        <input class="form-control" name="slmarket_price" type="text" id="slmarket_price" value="{{ isset($item->slmarket_price) ? $item->slmarket_price : ''}}" >
     </div>
     {!! $errors->first('slmarket_price', '<p class="help-block">:message</p>') !!}
 </div>
@@ -95,7 +101,7 @@
     <label for="selling_price" class="control-label">{{ 'Selling Price' }}</label>
     <div class="input-group-prepend">
         <span class="input-group-text">Rs</span>
-        <input class="form-control" name="selling_price" type="number" id="selling_price" value="{{ isset($item->selling_price) ? $item->selling_price : ''}}" >
+        <input class="form-control" name="selling_price" type="text" id="selling_price" value="{{ isset($item->selling_price) ? $item->selling_price : ''}}" >
     </div>
     {!! $errors->first('selling_price', '<p class="help-block">:message</p>') !!}
 </div>

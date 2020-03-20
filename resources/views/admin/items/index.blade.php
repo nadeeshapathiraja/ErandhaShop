@@ -31,7 +31,8 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Category Id</th>
+                                        <th>Category Name</th>
+                                        <th>Product Name</th>
                                         <th>Product Code</th>
                                         <th>Actions</th>
                                     </tr>
@@ -41,6 +42,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->category->name }}</td>
+                                        <td>{{ $item->name }}</td>
                                         <td>{{ $item->product_code }}</td>
                                         <td>
                                             <a href="{{ url('/items/' . $item->id) }}" title="View item"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>

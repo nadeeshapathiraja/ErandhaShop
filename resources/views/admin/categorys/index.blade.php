@@ -32,7 +32,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
-                                        <th>Item Code</th>
+                                        <th>Product Code</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>

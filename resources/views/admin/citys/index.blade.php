@@ -30,14 +30,22 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Name</th><th>Deliverycompany Id</th><th>Zone Id</th><th>Actions</th>
+                                        <th>#</th>
+                                        <th>Zone Name</th>
+                                        <th>Name</th>
+                                        <th>Delivery Company</th>
+                                        <th>Price</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($citys as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->name }}</td><td>{{ $item->deliverycompany_id }}</td><td>{{ $item->zone_id }}</td>
+                                        <td>{{ $item->zone->name }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->deliverycompany->name }}</td>
+                                        <td>{{ $item->price }}</td>
                                         <td>
                                             <a href="{{ url('/citys/' . $item->id) }}" title="View City"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/citys/' . $item->id . '/edit') }}" title="Edit City"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

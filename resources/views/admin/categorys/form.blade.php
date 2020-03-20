@@ -4,7 +4,7 @@
     {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('item_code') ? 'has-error' : ''}}">
-    <label for="item_code" class="control-label">{{ 'Item Code' }}</label>
+    <label for="item_code" class="control-label">{{ 'Product Code' }}</label>
     <input class="form-control" name="item_code" type="text" id="item_code" value="{{ isset($category->item_code) ? $category->item_code : ''}}" >
     {!! $errors->first('item_code', '<p class="help-block">:message</p>') !!}
 </div>

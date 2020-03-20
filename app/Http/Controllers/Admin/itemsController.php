@@ -81,8 +81,8 @@ class itemsController extends Controller
     public function edit($id)
     {
         $item = item::findOrFail($id);
-
-        return view('Admin.items.edit', compact('item'));
+        $allcategorys =Category::all();
+        return view('Admin.items.edit', compact('item','allcategorys'));
     }
 
 

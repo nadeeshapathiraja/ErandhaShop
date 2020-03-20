@@ -30,6 +30,9 @@ class City extends Model
     public function deliverycompany(){
         return $this->belongsTo('App\Deliverycompany');
     }
+    public function zone(){
+        return $this->belongsTo('App\Zone');
+    }
 
 
 }

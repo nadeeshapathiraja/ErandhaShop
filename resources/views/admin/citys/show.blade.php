@@ -24,10 +24,28 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <tbody>
+
                                     <tr>
-                                        <th>ID</th><td>{{ $city->id }}</td>
+                                        <th>ID</th>
+                                        <td>{{ $city->id }}</td>
                                     </tr>
-                                    <tr><th> Name </th><td> {{ $city->name }} </td></tr><tr><th> Deliverycompany Id </th><td> {{ $city->deliverycompany_id }} </td></tr><tr><th> Zone Id </th><td> {{ $city->zone_id }} </td></tr>
+                                    <tr>
+                                        <th> Name </th>
+                                        <td> {{ $city->name }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Deliverycompany Id </th>
+                                        <td> {{ $city->deliverycompany->name }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Zone Id </th>
+                                        <td> {{ $city->zone->name }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Price </th>
+                                        <td>Rs. {{ $city->price }} </td>
+                                    </tr>
+
                                 </tbody>
                             </table>
                         </div>

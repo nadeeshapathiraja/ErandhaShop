@@ -18,6 +18,7 @@ class CreateItemsTable extends Migration
             $table->timestamps();
             $table->string('photo')->nullable();
             $table->integer('category_id')->nullable()->unsigned();
+            $table->string('name')->nullable();
             $table->string('product_code')->nullable();
             $table->string('description')->nullable();
             $table->integer('quantity')->nullable();

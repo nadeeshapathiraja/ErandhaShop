@@ -59,16 +59,18 @@ class CitysController extends Controller
     public function show($id)
     {
         $city = City::findOrFail($id);
-
-        return view('Admin.citys.show', compact('city'));
+        $deliverycompanys =Deliverycompany::all();
+        $zones= Zone::all();
+        return view('Admin.citys.show', compact('city','deliverycompanys','zones'));
     }
 
 
     public function edit($id)
     {
         $city = City::findOrFail($id);
-
-        return view('Admin.citys.edit', compact('city'));
+        $deliverycompanys =Deliverycompany::all();
+        $zones= Zone::all();
+        return view('Admin.citys.edit', compact('city','deliverycompanys','zones'));
     }
 
 
@@ -76,7 +78,7 @@ class CitysController extends Controller
     {
 
         $requestData = $request->all();
-
+        $deliverycompanys =Deliverycompany::all();
         $city = City::findOrFail($id);
         $city->update($requestData);
 
