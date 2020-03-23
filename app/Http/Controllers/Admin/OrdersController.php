@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\City;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-
+use App\Item;
 use App\Order;
 use Illuminate\Http\Request;
 
@@ -47,7 +48,9 @@ class OrdersController extends Controller
 
     public function create()
     {
-        return view('admin.orders.create');
+        $items =Item::all();
+        $citys =City::all();
+        return view('admin.orders.create',compact('items','citys'));
     }
 
 
@@ -58,7 +61,7 @@ class OrdersController extends Controller
 
         Order::create($requestData);
 
-        return redirect('admin/orders')->with('flash_message', 'Order added!');
+        return redirect('orders')->with('flash_message', 'Order added!');
     }
 
 
@@ -73,8 +76,9 @@ class OrdersController extends Controller
     public function edit($id)
     {
         $order = Order::findOrFail($id);
-
-        return view('admin.orders.edit', compact('order'));
+        $items =Item::all();
+        $citys =City::all();
+        return view('admin.orders.edit', compact('order','items','citys'));
     }
 
 
@@ -86,7 +90,7 @@ class OrdersController extends Controller
         $order = Order::findOrFail($id);
         $order->update($requestData);
 
-        return redirect('admin/orders')->with('flash_message', 'Order updated!');
+        return redirect('orders')->with('flash_message', 'Order updated!');
     }
 
 
@@ -94,6 +98,6 @@ class OrdersController extends Controller
     {
         Order::destroy($id);
 
-        return redirect('admin/orders')->with('flash_message', 'Order deleted!');
+        return redirect('orders')->with('flash_message', 'Order deleted!');
     }
 }
