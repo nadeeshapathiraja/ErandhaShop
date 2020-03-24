@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->date('date')->nullable();
+            $table->string('month')->nullable();
             $table->integer('deliverycompany_id')->nullable();
             $table->string('shipment_code')->nullable();
             $table->string('name')->nullable();

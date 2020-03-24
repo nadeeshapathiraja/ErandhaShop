@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\City;
+use App\Deliverycompany;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Item;
@@ -24,7 +26,7 @@ class OrdersController extends Controller
 
         if (!empty($keyword)) {
             $orders = Order::where('date', 'LIKE', "%$keyword%")
-                ->orWhere('order_id', 'LIKE', "%$keyword%")
+                ->orWhere('month', 'LIKE', "%$keyword%")
                 ->orWhere('deliverycompany_id', 'LIKE', "%$keyword%")
                 ->orWhere('shipment_code', 'LIKE', "%$keyword%")
                 ->orWhere('name', 'LIKE', "%$keyword%")
@@ -50,7 +52,9 @@ class OrdersController extends Controller
     {
         $items =Item::all();
         $citys =City::all();
-        return view('admin.orders.create',compact('items','citys'));
+        $categorys =Category::all();
+        $deliverycompanys= Deliverycompany::all();
+        return view('admin.orders.create',compact('items','citys','categorys','deliverycompanys'));
     }
 
 
@@ -78,7 +82,9 @@ class OrdersController extends Controller
         $order = Order::findOrFail($id);
         $items =Item::all();
         $citys =City::all();
-        return view('admin.orders.edit', compact('order','items','citys'));
+        $categorys =Category::all();
+        $deliverycompanys= Deliverycompany::all();
+        return view('admin.orders.edit', compact('order','items','citys','categorys','deliverycompanys'));
     }
 
 

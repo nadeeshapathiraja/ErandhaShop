@@ -3,18 +3,39 @@
     <input class="form-control" name="date" type="date" id="date" value="{{ isset($order->date) ? $order->date : ''}}" >
     {!! $errors->first('date', '<p class="help-block">:message</p>') !!}
 </div>
-{{-- <div class="form-group {{ $errors->has('order_id') ? 'has-error' : ''}}">
-    <label for="order_id" class="control-label">{{ 'Order Id' }}</label>
-    <input class="form-control" name="order_id" type="text" id="order_id" value="{{ isset($order->order_id) ? $order->order_id : ''}}" >
-    {!! $errors->first('order_id', '<p class="help-block">:message</p>') !!}
-</div> --}}
+<div class="form-group {{ $errors->has('month') ? 'has-error' : ''}}">
+    <label for="month" class="control-label">{{ 'Month' }}</label>
+    <select class="form-control"  name="month" id="month" value="{{ isset($order->month) ? $order->month : ''}}">
+        <option value="January">January</option>
+        <option value="February">February</option>
+        <option value="March">March</option>
+        <option value="April">April</option>
+        <option value="May">May</option>
+        <option value="June">June</option>
+        <option value="July">July</option>
+        <option value="August">August</option>
+        <option value="September">September</option>
+        <option value="October">October</option>
+        <option value="November">November</option>
+        <option value="December">December</option>
+    </select>
+    {!! $errors->first('month', '<p class="help-block">:message</p>') !!}
+</div>
 <div class="form-group {{ $errors->has('deliverycompany_id') ? 'has-error' : ''}}">
-    <label for="deliverycompany_id" class="control-label">{{ 'Deliverycompany Id' }}</label>
-    <input class="form-control" name="deliverycompany_id" type="text" id="deliverycompany_id" value="{{ isset($order->deliverycompany_id) ? $order->deliverycompany_id : ''}}" >
+    <label for="deliverycompany_id" class="control-label">{{ 'Deliverycompany Name' }}</label>
+    <select class="form-control" name="deliverycompany_id" id="deliverycompany_id" value="{{ isset($order->deliverycompany_id) ? $order->deliverycompany_id : ''}}">
+        @foreach ($deliverycompanys as $deliverycompany)
+            @if($formMode === 'edit')
+                <option value="{{ $deliverycompany->id }}" {{ ( $deliverycompany->id == $city->deliverycompany_id) ? 'selected' : '' }}>{{ $deliverycompany->name }}</option>
+            @else
+                <option value="{{ $deliverycompany->id }}">{{ $deliverycompany->name }}</option>
+            @endif
+        @endforeach
+    </select>
     {!! $errors->first('deliverycompany_id', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('shipment_code') ? 'has-error' : ''}}">
-    <label for="shipment_code" class="control-label">{{ 'Shipment Code' }}</label>
+    <label for="shipment_code" class="control-label">{{ 'Deliverycompany Shipment Code' }}</label>
     <input class="form-control" name="shipment_code" type="text" id="shipment_code" value="{{ isset($order->shipment_code) ? $order->shipment_code : ''}}" >
     {!! $errors->first('shipment_code', '<p class="help-block">:message</p>') !!}
 </div>
@@ -38,7 +59,41 @@
     {!! $errors->first('order_source', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
+        <div class="form-group {{ $errors->has('item_id') ? 'has-error' : ''}}">
+            <label for="item_id" class="control-label">{{ 'Catergory Name' }}</label>
+            {{--  <select class="form-control" name="item_id" id="item_id" value="{{ isset($order->item_id) ? $order->item_id : ''}}">
+                @foreach ($categorys as $category)
+                    @if($formMode === 'edit')
+                        <option value="{{ $category->id }}" {{ ( $category->id == $item->category_id) ? 'selected' : '' }}>{{ $category->name }}</option>
+                    @else
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endif
+                @endforeach
+            </select>  --}}
+            @if($formMode === 'edit')
+                <select class="form-control" name="item_id" id="item_id" value="{{ isset($order->item_id) ? $order->item_id : ''}}">
+                    @foreach ($categorys as $category)
+                        <option value="{{ $category->id }}" {{ ( $category->id == $item->category_id) ? 'selected' : '' }}>{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            @else
+                <select class="form-control" name="item_id" id="item_id" value="{{ isset($order->item_id) ? $order->item_id : ''}}">
+                    @foreach ($categorys as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            @endif
+            <br/>
+            <div id="Result">
+
+            </div>
+
+            {!! $errors->first('item_id', '<p class="help-block">:message</p>') !!}
+
+        </div>
+    </div>
+    <div class="col-md-4">
         <div class="form-group {{ $errors->has('item_id') ? 'has-error' : ''}}">
             <label for="item_id" class="control-label">{{ 'Item Name' }}</label>
             <select class="form-control" name="item_id" id="item_id" value="{{ isset($order->item_id) ? $order->item_id : ''}}">
@@ -59,7 +114,7 @@
 
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-2">
         <div class="form-group {{ $errors->has('quantity') ? 'has-error' : ''}}">
             <label for="quantity" class="control-label">{{ 'Quantity' }}</label>
             <input class="form-control" name="quantity" type="number" id="quantity" value="{{ isset($order->quantity) ? $order->quantity : ''}}" >
