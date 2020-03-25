@@ -27,17 +27,23 @@
                         <br/>
                         <br/>
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-bordered table-striped table-dark table-hover">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Item Id</th><th>Total Clearance</th><th>Value With Offer</th><th>Actions</th>
+                                        <th>#</th>
+                                        <th>Item Id</th>
+                                        <th>Total Clearance</th>
+                                        <th>Value With Offer</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($moneytransactions as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->item_id }}</td><td>{{ $item->total_clearance }}</td><td>{{ $item->value_with_offer }}</td>
+                                        <td>{{ $item->item_id }}</td>
+                                        <td>{{ $item->total_clearance }}</td>
+                                        <td>{{ $item->value_with_offer }}</td>
                                         <td>
                                             <a href="{{ url('/moneytransactions/' . $item->id) }}" title="View Moneytransaction"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/moneytransactions/' . $item->id . '/edit') }}" title="Edit Moneytransaction"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->timestamps();
             $table->date('date')->nullable();
             $table->string('month')->nullable();
-            $table->integer('deliverycompany_id')->nullable();
+            $table->integer('deliverycompany_id')->nullable()->unsigned();
             $table->string('shipment_code')->nullable();
             $table->string('name')->nullable();
             $table->string('order_source')->nullable();
@@ -33,6 +33,7 @@ class CreateOrdersTable extends Migration
             $table->string('delivery_process')->nullable();
             $table->foreign('item_id')->references('id')->on('items')->sign;
             $table->foreign('city_id')->references('id')->on('citys')->sign;
+            $table->foreign('deliverycompany_id')->references('id')->on('deliverycompanys')->sign;
             $table->foreign('category_id')->references('id')->on('categorys')->sign;
             });
     }

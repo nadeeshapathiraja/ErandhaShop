@@ -27,17 +27,23 @@
                         <br/>
                         <br/>
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-bordered table-striped table-dark table-hover">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Name</th><th>Country</th><th>Item Id</th><th>Actions</th>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Country</th>
+                                        <th>Item Id</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($supplyers as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->name }}</td><td>{{ $item->country }}</td><td>{{ $item->item_id }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->country }}</td>
+                                        <td>{{ $item->item_id }}</td>
                                         <td>
                                             <a href="{{ url('/supplyers/' . $item->id) }}" title="View Supplyer"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/supplyers/' . $item->id . '/edit') }}" title="Edit Supplyer"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

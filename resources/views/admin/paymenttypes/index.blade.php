@@ -27,17 +27,23 @@
                         <br/>
                         <br/>
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-bordered table-striped table-dark table-hover">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Order Id</th><th>Name</th><th>Deposit Type</th><th>Actions</th>
+                                        <th>#</th>
+                                        <th>Order Id</th>
+                                        <th>Name</th>
+                                        <th>Deposit Type</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($paymenttypes as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->order_id }}</td><td>{{ $item->name }}</td><td>{{ $item->deposit_type }}</td>
+                                        <td>{{ $item->order_id }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->deposit_type }}</td>
                                         <td>
                                             <a href="{{ url('/paymenttypes/' . $item->id) }}" title="View Paymenttype"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/paymenttypes/' . $item->id . '/edit') }}" title="Edit Paymenttype"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

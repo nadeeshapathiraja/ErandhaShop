@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-
+use App\Item;
 use App\Supplyer;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,9 @@ class SupplyersController extends Controller
 
     public function create()
     {
-        return view('Admin.supplyers.create');
+        $items=Item::all();
+        $categorys=Category::all();
+        return view('Admin.supplyers.create', compact('items','categorys'));
     }
 
 
@@ -63,8 +66,8 @@ class SupplyersController extends Controller
     public function edit($id)
     {
         $supplyer = Supplyer::findOrFail($id);
-
-        return view('Admin.supplyers.edit', compact('supplyer'));
+        $categorys=Category::all();
+        return view('Admin.supplyers.edit', compact('supplyer','categorys'));
     }
 
 

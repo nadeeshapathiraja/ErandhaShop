@@ -25,7 +25,7 @@ class Supplyer extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'country', 'item_id', 'quantity'];
+    protected $fillable = ['name', 'country', 'category_id', 'item_id', 'quantity'];
 
-    
+
 }

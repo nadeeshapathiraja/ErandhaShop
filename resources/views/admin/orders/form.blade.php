@@ -60,17 +60,8 @@
 </div>
 <div class="row">
     <div class="col-md-4">
-        <div class="form-group {{ $errors->has('item_id') ? 'has-error' : ''}}">
-            <label for="item_id" class="control-label">{{ 'Catergory Name' }}</label>
-            {{--  <select class="form-control" name="item_id" id="item_id" value="{{ isset($order->item_id) ? $order->item_id : ''}}">
-                @foreach ($categorys as $category)
-                    @if($formMode === 'edit')
-                        <option value="{{ $category->id }}" {{ ( $category->id == $item->category_id) ? 'selected' : '' }}>{{ $category->name }}</option>
-                    @else
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endif
-                @endforeach
-            </select>  --}}
+        <div class="form-group {{ $errors->has('category_id') ? 'has-error' : ''}}">
+            <label for="item_id" class="control-label">{{ 'Catergory Name' }}</label>s
             @if($formMode === 'edit')
                 <select class="form-control" name="item_id" id="item_id" value="{{ isset($order->item_id) ? $order->item_id : ''}}">
                     @foreach ($categorys as $category)
@@ -89,7 +80,7 @@
 
             </div>
 
-            {!! $errors->first('item_id', '<p class="help-block">:message</p>') !!}
+            {!! $errors->first('category_id', '<p class="help-block">:message</p>') !!}
 
         </div>
     </div>

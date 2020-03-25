@@ -18,9 +18,11 @@ class CreateSupplyersTable extends Migration
             $table->timestamps();
             $table->string('name')->nullable();
             $table->string('country')->nullable();
+            $table->integer('category_id')->nullable()->unsigned();
             $table->integer('item_id')->nullable()->unsigned();
             $table->integer('quantity')->nullable();
             $table->foreign('item_id')->references('id')->on('items')->sign;
+            $table->foreign('category_id')->references('id')->on('categorys')->sign;
             });
     }
 
