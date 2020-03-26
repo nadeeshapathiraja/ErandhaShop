@@ -21,7 +21,7 @@
                     <br/><br/>
 
                     <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <div class="well">
                                     <h4>Item Count</h4>
                                     <div class="alert alert-info">
@@ -30,11 +30,20 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <div class="well">
                                     <h4>Order Count</h4>
                                     <div class="alert alert-info">
                                         No of Orders: {{ $oc }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="well">
+                                    <h4>On Process Orders</h4>
+                                    <div class="alert alert-info">
+                                        On Process: {{ $Onprocess }}
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +56,7 @@
                                 <div class="well">
                                     <h4>On Process Orders</h4>
                                     <div class="alert alert-primary">
-                                        On Process: {{ 2 }}
+                                        Pickuped Orders: {{ $Pickup }}
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +64,7 @@
                                 <div class="well">
                                     <h4>Dispatch Orders</h4>
                                     <div class="alert alert-warning">
-                                        Dispatch Orders: {{ 3 }}
+                                        Dispatch Orders: {{ $Dispatch }}
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +74,7 @@
                                 <div class="well">
                                     <h4>Deliverd Orders</h4>
                                     <div class="alert alert-success">
-                                        Deliverd: {{ 2 }}
+                                        Deliverd: {{ $Deliverd }}
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +82,7 @@
                                 <div class="well">
                                     <h4>Return Orders</h4>
                                     <div class="alert alert-danger">
-                                        Returns: {{ 3 }}
+                                        Returns: {{ $Return }}
                                     </div>
                                 </div>
                             </div>
