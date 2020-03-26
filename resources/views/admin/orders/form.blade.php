@@ -26,7 +26,7 @@
     <select class="form-control" name="deliverycompany_id" id="deliverycompany_id" value="{{ isset($order->deliverycompany_id) ? $order->deliverycompany_id : ''}}">
         @foreach ($deliverycompanys as $deliverycompany)
             @if($formMode === 'edit')
-                <option value="{{ $deliverycompany->id }}" {{ ( $deliverycompany->id == $city->deliverycompany_id) ? 'selected' : '' }}>{{ $deliverycompany->name }}</option>
+                <option value="{{ $deliverycompany->id }}" {{ ( $deliverycompany->id == $order->deliverycompany_id) ? 'selected' : '' }}>{{ $deliverycompany->name }}</option>
             @else
                 <option value="{{ $deliverycompany->id }}">{{ $deliverycompany->name }}</option>
             @endif
@@ -62,19 +62,15 @@
     <div class="col-md-4">
         <div class="form-group {{ $errors->has('category_id') ? 'has-error' : ''}}">
             <label for="item_id" class="control-label">{{ 'Catergory Name' }}</label>s
-            @if($formMode === 'edit')
-                <select class="form-control" name="item_id" id="item_id" value="{{ isset($order->item_id) ? $order->item_id : ''}}">
-                    @foreach ($categorys as $category)
+            <select class="form-control" name="category_id" id="category_id" value="{{ isset($order->category_id) ? $order->category_id : ''}}">
+                @foreach ($categorys as $category)
+                    @if($formMode === 'edit')
                         <option value="{{ $category->id }}" {{ ( $category->id == $order->category_id) ? 'selected' : '' }}>{{ $category->name }}</option>
-                    @endforeach
-                </select>
-            @else
-                <select class="form-control" name="item_id" id="item_id" value="{{ isset($order->item_id) ? $order->item_id : ''}}">
-                    @foreach ($categorys as $category)
+                    @else
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
-                </select>
-            @endif
+                    @endif
+                @endforeach
+            </select>
             <br/>
             <div id="Result">
 

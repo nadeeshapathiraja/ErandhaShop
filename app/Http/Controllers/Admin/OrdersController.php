@@ -22,7 +22,7 @@ class OrdersController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        $perPage = 10;
 
         if (!empty($keyword)) {
             $orders = Order::where('date', 'LIKE', "%$keyword%")
@@ -72,8 +72,8 @@ class OrdersController extends Controller
     public function show($id)
     {
         $order = Order::findOrFail($id);
-
-        return view('admin.orders.show', compact('order'));
+        $items =Item::all();
+        return view('admin.orders.show', compact('order','items'));
     }
 
 

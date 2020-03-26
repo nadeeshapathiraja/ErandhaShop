@@ -32,7 +32,6 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Date</th>
-                                        <th>Order Id</th>
                                         <th>Delivery Company Id</th>
                                         <th>Delivery Process</th>
                                         <th>Actions</th>
@@ -43,7 +42,6 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->date }}</td>
-                                        <td>{{ $item->order_id }}</td>
                                         <td>{{ $item->deliverycompany_id }}</td>
                                         <td>
                                             @if($item->delivery_process === 'Pickup')

@@ -19,7 +19,7 @@ class ZonesController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        $perPage = 10;
 
         if (!empty($keyword)) {
             $zones = Zone::where('name', 'LIKE', "%$keyword%")

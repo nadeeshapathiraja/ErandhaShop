@@ -19,4 +19,10 @@ class Order extends Model
     public static function order_count(){
         return Order::count();
     }
+    public function item(){
+        return $this->belongsTo('App\Item');
+    }
+    public function city(){
+        return $this->belongsTo('App\City');
+    }
 }

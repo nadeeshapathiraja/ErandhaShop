@@ -18,7 +18,7 @@ class ClientsController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        $perPage = 10;
 
         if (!empty($keyword)) {
             $clients = Client::where('name', 'LIKE', "%$keyword%")
@@ -53,9 +53,9 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
+
         Client::create($requestData);
 
         return redirect('clients')->with('flash_message', 'Client added!');
@@ -99,9 +99,9 @@ class ClientsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $client = Client::findOrFail($id);
         $client->update($requestData);
 
