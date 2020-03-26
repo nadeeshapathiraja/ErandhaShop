@@ -33,7 +33,8 @@
                                         <th>#</th>
                                         <th>Date</th>
                                         <th>Order Id</th>
-                                        <th>Deliverycompany Id</th>
+                                        <th>Delivery Company Id</th>
+                                        <th>Delivery Process</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -44,6 +45,19 @@
                                         <td>{{ $item->date }}</td>
                                         <td>{{ $item->order_id }}</td>
                                         <td>{{ $item->deliverycompany_id }}</td>
+                                        <td>
+                                            @if($item->delivery_process === 'Pickup')
+                                                <button style="width: 150px" class="btn btn-secondary">PickUp Item</button>
+                                            @elseif($item->delivery_process === 'Onprocess')
+                                                <button style="width: 150px" class="btn btn-info">OnProcess</button>
+                                            @elseif($item->delivery_process === 'Dispatch')
+                                                <button style="width: 150px" class="btn btn-primary">Dispatch Item</button>
+                                            @elseif($item->delivery_process === 'Deliverd')
+                                                <button style="width: 150px" class="btn btn-success">Deliverd Item</button>
+                                            @else
+                                                <button style="width: 150px" class="btn btn-danger">Return Item</button>
+                                            @endif
+                                        </td>
                                         <td>
                                             <a href="{{ url('/orders/' . $item->id) }}" title="View Order"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/orders/' . $item->id . '/edit') }}" title="Edit Order"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

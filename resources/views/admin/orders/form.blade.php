@@ -65,7 +65,7 @@
             @if($formMode === 'edit')
                 <select class="form-control" name="item_id" id="item_id" value="{{ isset($order->item_id) ? $order->item_id : ''}}">
                     @foreach ($categorys as $category)
-                        <option value="{{ $category->id }}" {{ ( $category->id == $item->category_id) ? 'selected' : '' }}>{{ $category->name }}</option>
+                        <option value="{{ $category->id }}" {{ ( $category->id == $order->category_id) ? 'selected' : '' }}>{{ $category->name }}</option>
                     @endforeach
                 </select>
             @else
@@ -156,6 +156,11 @@
     <select class="form-control" name="delivery_process" id="delivery_process" value="{{ isset($order->delivery_process) ? $order->delivery_process : ''}}">
         @if($formMode === 'edit')
             <option value="{{ $order->delivery_process }}" ? 'selected' : '' }}>{{ $order->delivery_process }}</option>
+            <option value="Pickup">Pickup</option>
+            <option value="Onprocess">Onprocess</option>
+            <option value="Dispatch">Dispatch</option>
+            <option value="Deliverd">Deliverd</option>
+            <option value="Return">Return</option>
         @else
             <option value="Pickup">Pickup</option>
             <option value="Onprocess">Onprocess</option>
