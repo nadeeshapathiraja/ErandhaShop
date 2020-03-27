@@ -6,10 +6,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-use App\item;
+use App\Item;
 use App\Category;
+use App\Moneytransaction;
 use App\Zone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class itemsController extends Controller
 {
@@ -65,6 +67,19 @@ class itemsController extends Controller
         }
 
         item::create($requestData);
+
+        $requestData = $request->all();
+        $item = Item::create($requestData);
+        $clearance_charge = $item->clearance_charge;
+        $quantity=$item->quantity;
+        $clearance_charge = $item->clearance_charge;
+        $quantity=$item->quantity;
+
+
+        //data send to tranmsaction page
+        $ternsaction = new Moneytransaction();
+        $ternsaction->total_clearance = ($clearance_charge * $quantity);
+        $ternsaction->save();
 
         return redirect('items')->with('flash_message', 'item added!');
     }
