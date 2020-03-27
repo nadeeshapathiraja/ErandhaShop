@@ -34,8 +34,8 @@ class HomeController extends Controller
         $Dispatch = DB::table('orders')->where('delivery_process','Dispatch')->count();
         $Deliverd = DB::table('orders')->where('delivery_process','Deliverd')->count();
         $Return = DB::table('orders')->where('delivery_process','Return')->count();
+        $Reject = DB::table('orders')->where('delivery_process','Reject')->count();
 
-
-        return view('home',compact('oc','ic','Pickup','Return','Onprocess','Dispatch','Deliverd'));
+        return view('home',compact('oc','ic','Pickup','Return','Onprocess','Dispatch','Deliverd','Reject'));
     }
 }

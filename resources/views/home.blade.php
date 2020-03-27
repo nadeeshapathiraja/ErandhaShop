@@ -21,7 +21,7 @@
                     <br/><br/>
 
                     <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <div class="well">
                                     <h4>Item Count</h4>
                                     <div class="alert alert-info">
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <div class="well">
                                     <h4>Order Count</h4>
                                     <div class="alert alert-info">
@@ -39,24 +39,33 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <div class="well">
-                                    <h4>On Process Orders</h4>
+                                    <h4>PickUp Orders</h4>
                                     <div class="alert alert-info">
-                                        On Process: {{ $Onprocess }}
+                                        PickUp: {{ $Pickup }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="well">
+                                    <h4>Rejected Orders</h4>
+                                    <div class="alert alert-info">
+                                        Rejected: {{ $Reject }}
                                     </div>
                                 </div>
                             </div>
 
                     </div><br/><br/>
                     <div>
-                        <h2 style="text-align: center">Order Handling</h2><br/>
+                        <h2 style="text-align: center">Order Process</h2><br/>
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="well">
                                     <h4>On Process Orders</h4>
                                     <div class="alert alert-primary">
-                                        Pickuped Orders: {{ $Pickup }}
+                                        Pickuped Orders: {{ $Onprocess }}
                                     </div>
                                 </div>
                             </div>

@@ -25,5 +25,8 @@ class Order extends Model
     public function city(){
         return $this->belongsTo('App\City');
     }
-    
+    public function Dcompany(){
+        return $this->belongsTo('App\Deliverycompany');
+    }
+
 }

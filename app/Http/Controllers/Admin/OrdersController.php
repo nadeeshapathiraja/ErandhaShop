@@ -23,7 +23,7 @@ class OrdersController extends Controller
     {
         $keyword = $request->get('search');
         $perPage = 10;
-
+        $citys =City::all();
         if (!empty($keyword)) {
             $orders = Order::where('date', 'LIKE', "%$keyword%")
                 ->orWhere('month', 'LIKE', "%$keyword%")
@@ -44,7 +44,7 @@ class OrdersController extends Controller
             $orders = Order::latest()->paginate($perPage);
         }
 
-        return view('admin.orders.index', compact('orders'));
+        return view('admin.orders.index', compact('orders','citys'));
     }
 
 
@@ -106,4 +106,21 @@ class OrdersController extends Controller
 
         return redirect('orders')->with('flash_message', 'Order deleted!');
     }
+
+    // public function removeItem($id)
+    // {
+    //     Cart::remove($id);
+
+    //     if (Cart::isEmpty()) {
+    //         return redirect('/');
+    //     }
+    //     return redirect()->back()->with('message', 'Item removed from cart successfully.');
+    // }
+
+    // public function clearCart()
+    // {
+    //     Cart::clear();
+
+    //     return redirect('/');
+    // }
 }

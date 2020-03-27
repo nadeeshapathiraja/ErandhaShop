@@ -22,9 +22,9 @@
                             </div>
                             <div class="col-md-3">
                                 @if($order->delivery_process === 'Pickup')
-                                    <button style="width: 150px" class="btn btn-secondary">PickUp Item</button>
+                                    <button style="width: 150px" class="btn btn-secondary">PickUp Order</button>
                                 @elseif($order->delivery_process === 'Onprocess')
-                                    <button style="width: 150px" class="btn btn-info">OnProcess</button>
+                                    <button style="width: 150px" class="btn btn-info">OnProcess Order</button>
                                 @elseif($order->delivery_process === 'Dispatch')
                                     <button style="width: 150px" class="btn btn-primary">Dispatch Item</button>
                                 @elseif($order->delivery_process === 'Deliverd')
@@ -66,10 +66,10 @@
                                         <th> Item Quantity </th>
                                         <td> {{ $order->quantity }} </td>
                                     </tr>
-                                    {{-- <tr>
+                                    <tr>
                                         <th> City </th>
                                         <td> {{ $order->city->name }} </td>
-                                    </tr> --}}
+                                    </tr>
                                     <tr>
                                         <th> Delivery Address </th>
                                         <td> {{ $order->Location_address }} </td>

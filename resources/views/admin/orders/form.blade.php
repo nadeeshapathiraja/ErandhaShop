@@ -114,6 +114,23 @@
     </div>
 </div>
 
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Category Name</th>
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+
 {{-- <div class="form-group {{ $errors->has('price') ? 'has-error' : ''}}">
     <label for="price" class="control-label">{{ 'Price' }}</label>
     <input class="form-control" name="price" type="number" id="price" value="{{ isset($order->price) ? $order->price : ''}}" >
@@ -157,12 +174,14 @@
             <option value="Dispatch">Dispatch</option>
             <option value="Deliverd">Deliverd</option>
             <option value="Return">Return</option>
+            <option value="Reject">Reject</option>
         @else
             <option value="Pickup">Pickup</option>
             <option value="Onprocess">Onprocess</option>
             <option value="Dispatch">Dispatch</option>
             <option value="Deliverd">Deliverd</option>
             <option value="Return">Return</option>
+            <option value="Reject">Reject</option>
         @endif
 
     </select>
