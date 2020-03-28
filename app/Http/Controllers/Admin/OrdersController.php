@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\Item;
 use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrdersController extends Controller
 {
@@ -63,7 +64,21 @@ class OrdersController extends Controller
 
         $requestData = $request->all();
 
-        Order::create($requestData);
+        $order=Order::create($requestData);
+        if($order->delivery_process=='Deliverd'){
+            $deliverdQuantity = $order->quantity;
+            $item = DB::table('items')->where('id',$order->item_id)->first();
+            $item_quantity=$item->quantity;
+            DB::table('items')->update(['quantity' => ($item_quantity - $deliverdQuantity)]);
+        } 
+        else if($order->delivery_process=='Return'){
+            $returnQuantity = $order->quantity;
+            $item = DB::table('items')->where('id',$order->item_id)->first();
+            $item_quantity=$item->quantity;
+            DB::table('items')->update(['quantity' => ($item_quantity + $returnQuantity)]);
+        }
+
+
 
         return redirect('orders')->with('flash_message', 'Order added!');
     }
@@ -94,6 +109,20 @@ class OrdersController extends Controller
         $requestData = $request->all();
 
         $order = Order::findOrFail($id);
+
+        if($order->delivery_process=='Deliverd'){
+            $deliverdQuantity = $order->quantity;
+            $item = DB::table('items')->where('id',$order->item_id)->first();
+            $item_quantity=$item->quantity;
+            DB::table('items')->update(['quantity' => ($item_quantity + $deliverdQuantity)]);
+        }
+        else if($order->delivery_process=='Return'){
+            $returnQuantity = $order->quantity;
+            $item = DB::table('items')->where('id',$order->item_id)->first();
+            $item_quantity=$item->quantity;
+            DB::table('items')->update(['quantity' => ($item_quantity - $returnQuantity)]);
+        }
+
         $order->update($requestData);
 
         return redirect('orders')->with('flash_message', 'Order updated!');

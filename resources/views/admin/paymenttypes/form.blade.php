@@ -9,7 +9,7 @@
     {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('deposit_type') ? 'has-error' : ''}}">
-    <label for="deposit_type" class="control-label">{{ 'Deposit Type' }}</label>
+    <label for="deposit_type" class="control-label">{{ 'Payment Type' }}</label>
     <input class="form-control" name="deposit_type" type="text" id="deposit_type" value="{{ isset($paymenttype->deposit_type) ? $paymenttype->deposit_type : ''}}" >
     {!! $errors->first('deposit_type', '<p class="help-block">:message</p>') !!}
 </div>

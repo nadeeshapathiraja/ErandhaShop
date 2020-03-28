@@ -72,12 +72,46 @@ class itemsController extends Controller
         $item = Item::create($requestData);
         $clearance_charge = $item->clearance_charge;
         $quantity=$item->quantity;
+        $product_cost=$item->product_cost;
+        $discount=$item->discount;
+        $tax=$item->tax;
+        $dolour_rate=$item->dolour_rate;
 
-
-        //data send to tranmsaction page
+        //Data send to transaction page
         $ternsaction = new Moneytransaction();
         $ternsaction->item_id = $item->id;
+
+        //1. Calculate total clearance
         $ternsaction->total_clearance = ($clearance_charge*$quantity);
+
+        //  Calculate after offer for one item
+        //  $ternsaction->value_with_offer_for_1 = ($product_cost-$discount);
+
+        //2. Calculate after offer for all items
+        $ternsaction->value_with_offer = ($product_cost-$discount)*$quantity;
+
+        //Calculate total cost for one item
+        //$ternsaction->total_cost_for_1 = ($product_cost-$discount+$tax);
+
+        //3. Calculate total cost for all items
+        $ternsaction->total_cost = ($product_cost-$discount+$tax)*$quantity;
+
+        //Calculate rs value for one item
+        //$ternsaction->rs_value_for_1 = ($product_cost-$discount+$tax)*$dolour_rate;
+
+        //4. Calculate rs value for all item
+        $ternsaction->rs_value = (($product_cost-$discount+$tax)*$dolour_rate)*$quantity;
+
+        //5. Cost of products for one item
+        $ternsaction->product_cost = (($product_cost-$discount+$tax)*$dolour_rate)+$clearance_charge;
+
+        //6. Cost of products for all item
+        $ternsaction->total_product_cost = ((($product_cost-$discount+$tax)*$dolour_rate)*$quantity)+($clearance_charge*$quantity);
+
+
+
+
+
         $ternsaction->save();
 
         return redirect('items')->with('flash_message', 'item added!');
