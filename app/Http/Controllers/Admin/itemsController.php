@@ -66,19 +66,18 @@ class itemsController extends Controller
                 ->store('uploads', 'public');
         }
 
-        item::create($requestData);
+
 
         $requestData = $request->all();
         $item = Item::create($requestData);
-        $clearance_charge = $item->clearance_charge;
-        $quantity=$item->quantity;
         $clearance_charge = $item->clearance_charge;
         $quantity=$item->quantity;
 
 
         //data send to tranmsaction page
         $ternsaction = new Moneytransaction();
-        $ternsaction->total_clearance = ($clearance_charge * $quantity);
+        $ternsaction->item_id = $item->id;
+        $ternsaction->total_clearance = ($clearance_charge*$quantity);
         $ternsaction->save();
 
         return redirect('items')->with('flash_message', 'item added!');
