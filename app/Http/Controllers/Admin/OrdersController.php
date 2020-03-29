@@ -65,18 +65,26 @@ class OrdersController extends Controller
         $requestData = $request->all();
 
         $order=Order::create($requestData);
-        if($order->delivery_process=='Deliverd'){
-            $deliverdQuantity = $order->quantity;
+
+        if($order->delivery_process=='Dispatch'){
+            $dispatchQuantity = $order->quantity;
             $item = DB::table('items')->where('id',$order->item_id)->first();
             $item_quantity=$item->quantity;
-            DB::table('items')->update(['quantity' => ($item_quantity - $deliverdQuantity)]);
-        } 
+            DB::table('items')->update(['quantity' => ($item_quantity - $dispatchQuantity)]);
+        }
         else if($order->delivery_process=='Return'){
             $returnQuantity = $order->quantity;
             $item = DB::table('items')->where('id',$order->item_id)->first();
             $item_quantity=$item->quantity;
             DB::table('items')->update(['quantity' => ($item_quantity + $returnQuantity)]);
         }
+        else if($order->delivery_process=='Pickup'){
+            $pickupQuantity = $order->quantity;
+            $item = DB::table('items')->where('id',$order->item_id)->first();
+            $item_quantity=$item->quantity;
+            DB::table('items')->update(['quantity' => ($item_quantity - $pickupQuantity)]);
+        }
+
 
 
 
@@ -109,19 +117,26 @@ class OrdersController extends Controller
         $requestData = $request->all();
 
         $order = Order::findOrFail($id);
+        $item = DB::table('items')->where('id',$order->item_id)->first();
+        $item_quantity=$item->quantity;
 
-        if($order->delivery_process=='Deliverd'){
-            $deliverdQuantity = $order->quantity;
-            $item = DB::table('items')->where('id',$order->item_id)->first();
-            $item_quantity=$item->quantity;
-            DB::table('items')->update(['quantity' => ($item_quantity + $deliverdQuantity)]);
+        if($item->quantity>=0){
+            if($order->delivery_process=='Dispatch'){
+                $dispatchQuantity = $order->quantity;
+                DB::table('items')->update(['quantity' => ($item_quantity - $dispatchQuantity)]);
+            }
+            else if($order->delivery_process=='Return'){
+                $returnQuantity = $order->quantity;
+                $item = DB::table('items')->where('id',$order->item_id)->first();
+                DB::table('items')->update(['quantity' => ($item_quantity - $returnQuantity)]);
+            }
+            else if($order->delivery_process=='Pickup'){
+                $pickupQuantity = $order->quantity;
+                $item = DB::table('items')->where('id',$order->item_id)->first();
+                DB::table('items')->update(['quantity' => ($item_quantity + $pickupQuantity)]);
+            }
         }
-        else if($order->delivery_process=='Return'){
-            $returnQuantity = $order->quantity;
-            $item = DB::table('items')->where('id',$order->item_id)->first();
-            $item_quantity=$item->quantity;
-            DB::table('items')->update(['quantity' => ($item_quantity - $returnQuantity)]);
-        }
+
 
         $order->update($requestData);
 
