@@ -25,7 +25,7 @@ class Paymenttype extends Model
      *
      * @var array
      */
-    protected $fillable = ['order_id', 'name', 'deposit_type', 'amount'];
+    protected $fillable = ['order_id', 'name', 'deposit_type', 'amount', 'pay_to_future'];
 
-    
+
 }

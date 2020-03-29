@@ -20,6 +20,7 @@ class CreatePaymenttypesTable extends Migration
             $table->string('name')->nullable();
             $table->string('deposit_type')->nullable();
             $table->double('amount')->nullable();
+            $table->double('pay_to_future')->nullable();
             $table->foreign('order_id')->references('id')->on('orders')->sign;
             });
     }
