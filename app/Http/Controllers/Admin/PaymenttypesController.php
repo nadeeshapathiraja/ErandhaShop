@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Paymenttype;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PaymenttypesController extends Controller
 {
@@ -46,7 +47,17 @@ class PaymenttypesController extends Controller
 
         $requestData = $request->all();
 
-        Paymenttype::create($requestData);
+        $paymentType=Paymenttype::create($requestData);
+        $amount=$paymentType->amount;
+
+
+        //get total price in order table
+        $order = DB::table('orders')->where('id',$paymentType->order_id)->first();
+        $price=$order->price;
+
+        //update future payment
+        $pay_to_future=($price-$amount);
+        DB::table('paymenttypes')->update(['pay_to_future' => ($pay_to_future)]);
 
         return redirect('paymenttypes')->with('flash_message', 'Paymenttype added!');
     }

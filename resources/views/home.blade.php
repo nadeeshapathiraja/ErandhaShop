@@ -63,9 +63,9 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="well">
-                                    <h4>On Process Orders</h4>
+                                    <h4>OnProcess Orders</h4>
                                     <div class="alert alert-primary">
-                                        Pickuped Orders: {{ $Onprocess }}
+                                        OnProcess Orders: {{ $Onprocess }}
                                     </div>
                                 </div>
                             </div>
