@@ -63,8 +63,20 @@ class OrdersController extends Controller
     {
 
         $requestData = $request->all();
-
         $order=Order::create($requestData);
+        $id=$order->id;
+
+        $item = DB::table('items')->where('id',$order->item_id)->first();
+        $item_quantity=$item->quantity;
+        $item_price=$item->selling_price;
+
+        //get total price in order table
+        $order_price = DB::table('orders')->where('id',$id)->first();
+        $order_quantity=$order->quantity;
+
+        DB::table('orders')->where('id',$id)->update(['price' =>($item_price*$order_quantity)]);
+
+
 
         if($order->delivery_process=='Dispatch'){
             $dispatchQuantity = $order->quantity;
@@ -119,6 +131,7 @@ class OrdersController extends Controller
         $order = Order::findOrFail($id);
         $item = DB::table('items')->where('id',$order->item_id)->first();
         $item_quantity=$item->quantity;
+        $item_price=$item->selling_price;
 
         if($item->quantity>=0){
             if($order->delivery_process=='Dispatch'){
@@ -139,9 +152,10 @@ class OrdersController extends Controller
 
         //get total price in order table
         $order_price = DB::table('orders')->where('id',$id)->first();
-        $price=$order_price->price;
         $order_quantity=$item->quantity;
 
+        $price=$item_price*$order_quantity;
+        DB::table('orders')->update(['price' =>($item_price*$order_quantity)]);
 
 
         $order->update($requestData);

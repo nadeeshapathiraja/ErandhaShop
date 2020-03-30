@@ -34,7 +34,7 @@
                                         <th>Order Id</th>
                                         <th>Customer Name</th>
                                         <th>Delivery Process</th>
-                                        <th>Item</th>
+                                        {{--  <th>Item</th>  --}}
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -59,7 +59,7 @@
                                                 <button style="width: 150px" class="btn btn-danger">Return Item</button>
                                             @endif
                                         </td>
-                                        <td>{{ $item->item->name}}</td>
+                                        {{--  <td>{{ $item->item->name}}</td>  --}}
                                         <td>
                                             <a href="{{ url('/orders/' . $item->id) }}" title="View Order"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/orders/' . $item->id . '/edit') }}" title="Edit Order"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

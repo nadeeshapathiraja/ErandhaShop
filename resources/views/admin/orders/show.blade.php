@@ -74,6 +74,10 @@
                                         <th> Delivery Address </th>
                                         <td> {{ $order->Location_address }} </td>
                                     </tr>
+                                    <tr>
+                                        <th> Price </th>
+                                        <td> {{ $order->price }} </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
