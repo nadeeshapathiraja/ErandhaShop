@@ -31,7 +31,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Date</th>
+                                        <th>Order Id</th>
                                         <th>Customer Name</th>
                                         <th>Delivery Process</th>
                                         <th>Item</th>
@@ -42,7 +42,7 @@
                                 @foreach($orders as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->date }}</td>
+                                        <td>{{ $item->id }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>
                                             @if($item->delivery_process === 'Pickup')
