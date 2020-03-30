@@ -137,6 +137,12 @@ class OrdersController extends Controller
             }
         }
 
+        //get total price in order table
+        $order_price = DB::table('orders')->where('id',$id)->first();
+        $price=$order_price->price;
+        $order_quantity=$item->quantity;
+
+
 
         $order->update($requestData);
 
@@ -157,7 +163,7 @@ class OrdersController extends Controller
 
     //     if (Cart::isEmpty()) {
     //         return redirect('/');
-    //     }
+    //     }h                                        .
     //     return redirect()->back()->with('message', 'Item removed from cart successfully.');
     // }
 
