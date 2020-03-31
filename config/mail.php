@@ -133,4 +133,12 @@ return [
 
     'log_channel' => env('MAIL_LOG_CHANNEL'),
 
+
+
+    'mailgun' => [
+        'domain' => 'your-mailgun-domain',
+        'secret' => 'your-mailgun-key',
+        'endpoint' => 'api.eu.mailgun.net',
+    ],
+
 ];

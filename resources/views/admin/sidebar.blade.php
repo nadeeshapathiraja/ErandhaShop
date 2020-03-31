@@ -42,7 +42,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Transaction</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="paymenttypes">Payment Type</a>
+                    <a class="dropdown-item" href="paymenttypes">Order Transaction</a>
                     <a class="dropdown-item" href="moneytransactions">Money Transaction</a>
                 </div>
             </li><hr>
