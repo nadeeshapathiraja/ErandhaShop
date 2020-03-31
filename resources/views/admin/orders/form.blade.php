@@ -164,6 +164,28 @@
     <input class="form-control" name="notes" type="text" id="notes" value="{{ isset($order->notes) ? $order->notes : ''}}" >
     {!! $errors->first('notes', '<p class="help-block">:message</p>') !!}
 </div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group {{ $errors->has('deposit_type') ? 'has-error' : ''}}">
+            <label for="deposit_type" class="control-label">{{ 'Payment  Type' }}</label>
+            <select class="form-control" name="deposit_type" id="deposit_type" value="{{ isset($paymenttype->deposit_type) ? $paymenttype->deposit_type : ''}}">
+                <option value="Bank Deposit">Bank Deposit</option>
+                <option value="Cash On Delivery">Cash On Delivery</option>
+                <option value="Pick Up">Pick Up</option>
+                <option value="Pre Order">Pre Order</option>
+            </select>
+            {!! $errors->first('deposit_type', '<p class="help-block">:message</p>') !!}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group {{ $errors->has('first_payment') ? 'has-error' : ''}}">
+            <label for="first_payment" class="control-label">{{ 'First Payment' }}</label>
+            <input class="form-control" name="first_payment" type="number" id="first_payment" value="{{ isset($order->first_payment) ? $order->first_payment : ''}}" >
+            {!! $errors->first('first_payment', '<p class="help-block">:message</p>') !!}
+        </div>
+    </div>
+</div>
+
 <div class="form-group {{ $errors->has('delivery_process') ? 'has-error' : ''}}">
     <label for="delivery_process" class="control-label">{{ 'Delivery Process' }}</label>
     <select class="form-control" name="delivery_process" id="delivery_process" value="{{ isset($order->delivery_process) ? $order->delivery_process : ''}}">

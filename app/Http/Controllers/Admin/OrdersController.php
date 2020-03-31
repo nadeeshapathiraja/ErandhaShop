@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Item;
 use App\Order;
+use App\Paymenttype;
+use Faker\Provider\ar_SA\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -64,6 +66,8 @@ class OrdersController extends Controller
 
         $requestData = $request->all();
         $order=Order::create($requestData);
+        $price=$order->price;
+        $first_payment=$order->first_payment;
         $id=$order->id;
 
         $item = DB::table('items')->where('id',$order->item_id)->first();
@@ -73,6 +77,7 @@ class OrdersController extends Controller
         //get total price in order table
         $order_price = DB::table('orders')->where('id',$id)->first();
         $order_quantity=$order->quantity;
+
 
         DB::table('orders')->where('id',$id)->update(['price' =>($item_price*$order_quantity)]);
 
@@ -97,8 +102,14 @@ class OrdersController extends Controller
             DB::table('items')->update(['quantity' => ($item_quantity - $pickupQuantity)]);
         }
 
+        $paymentType = new Paymenttype();
+        $paymentType->order_id=$order->id;
+        $paymentType->name=$order->name;
+        $paymentType->deposit_type=$order->deposit_type;
+        $paymentType->amount=$order->first_payment;
+        $paymentType->pay_to_future=(($item_price*$order_quantity)-$first_payment);
 
-
+        $paymentType->save();
 
         return redirect('orders')->with('flash_message', 'Order added!');
     }
