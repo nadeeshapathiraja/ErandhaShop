@@ -41,3 +41,5 @@ Route::resource('supplyers', 'Admin\\SupplyersController');
 Route::resource('items', 'Admin\\itemsController');
 
 Route::resource('clients', 'Admin\\ClientsController');
+Route::resource('payments', 'Admin\\PaymentsController');
+Route::resource('payments', 'Admin\\PaymentsController');

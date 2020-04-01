@@ -1,6 +1,6 @@
 <div class="form-group {{ $errors->has('date') ? 'has-error' : ''}}">
-    <label for="date" class="control-label">{{ 'Date' }}</label>
-    <input class="form-control" name="date" type="date" id="date" value="{{ isset($order->date) ? $order->date : ''}}" >
+    <label for="date" class="control-label">{{ 'Order Date' }}</label>
+    <input class="form-control" name="date" type="date" id="today" min="" value="{{ isset($order->date) ? $order->date : ''}}" >
     {!! $errors->first('date', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('month') ? 'has-error' : ''}}">

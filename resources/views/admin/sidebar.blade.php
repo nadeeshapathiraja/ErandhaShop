@@ -44,6 +44,7 @@
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="paymenttypes">Order Transaction</a>
                     <a class="dropdown-item" href="moneytransactions">Money Transaction</a>
+                    <a class="dropdown-item" href="payments">Payment Log</a>
                 </div>
             </li><hr>
 

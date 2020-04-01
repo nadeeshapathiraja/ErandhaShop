@@ -40,6 +40,18 @@ php artisan crud:generate Moneytransactions --fields="item_id#integer; total_cle
 php artisan crud:generate Clients --fields="name#string; email#string; phone#string; address#string; comment#string" --view-path=Admin --controller-namespace=Admin --form-helper=html
 
 //new add
-php artisan crud:generate Payments --fields="date#date; order_id#integer; name#string; payment#double " --foreign-keys="order_id#id#orders " --relationships="order_id#id#orders#HasOne#App\Order" --view-path=Admin --controller-namespace=Admin --form-helper=html
+php artisan crud:generate Payments --fields="date#date; order_id#integer; name#string; Paymenttypes#string; payment#double " --foreign-keys="order_id#id#orders " --relationships="order_id#id#orders#HasOne#App\Order" --view-path=Admin --controller-namespace=Admin --form-helper=html
 
-php artisan crud:generate Finaltransactions --fields="date#date; order_id#integer; price#double;  " --view-path=Admin --controller-namespace=Admin --form-helper=html
+php artisan crud:generate Finaltransactions --fields="date#date; order_id#integer; price#double; " --view-path=Admin --controller-namespace=Admin --form-helper=html
+
+
+
+->unsigned();
+->sign;
+
+
+
+
+
+
+

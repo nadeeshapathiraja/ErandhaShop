@@ -23,10 +23,4 @@ function display_array() {
     document.getElementById("Result").innerHTML = e;
 }
 
-
-// function remove_element_to_array() {
-//     array[x] = document.getElementById("item_id").value;
-//     alert("Item Name: " + array.splice(x, 1) + " Remove index " + (x + 1));
-//     x++;
-//     document.getElementById("item_id").value = "";
-// }
+document.querySelector("#today").valueAsDate = new Date();
