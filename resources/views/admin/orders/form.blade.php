@@ -103,7 +103,7 @@
     </div>
     <div class="col-md-2">
         <div class="form-group {{ $errors->has('quantity') ? 'has-error' : ''}}">
-            <label for="quantity" class="control-label">{{ 'Quantity' }}</label>
+            <label for="quantity" class="control-label">{{ 'Item Quantity' }}</label>
             <input class="form-control" name="quantity" type="number" id="quantity" value="{{ isset($order->quantity) ? $order->quantity : ''}}" >
             {!! $errors->first('quantity', '<p class="help-block">:message</p>') !!}
         </div>
@@ -141,14 +141,14 @@
     <input class="form-control" name="Location_address" type="text" id="Location_address" value="{{ isset($order->Location_address) ? $order->Location_address : ''}}" >
     {!! $errors->first('Location_address', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('city_id') ? 'has-error' : ''}}">
-    <label for="city_id" class="control-label">{{ 'City Name' }}</label>
-    <select class="form-control" name="city_id" id="city_id" value="{{ isset($item->city_id) ? $item->city_id : ''}}">
-        @foreach ($citys as $city)
+<div class="form-group {{ $errors->has('zone_id') ? 'has-error' : ''}}">
+    <label for="city_id" class="control-label">{{ 'Zone Name' }}</label>
+    <select class="form-control" name="zone_id" id="zone_id" value="{{ isset($order->zone_id) ? $order->zone_id : ''}}">
+        @foreach ($zones as $zone)
             @if($formMode === 'edit')
-                <option value="{{ $city->id }}" {{ ( $city->id == $item->city_id) ? 'selected' : '' }}>{{ $city->name }}</option>
+                <option value="{{ $zone->id }}" {{ ( $zone->id == $item->zone_id) ? 'selected' : '' }}>{{ $zone->name }}</option>
             @else
-                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                <option value="{{ $zone->id }}">{{ $zone->name }}</option>
             @endif
         @endforeach
     </select>

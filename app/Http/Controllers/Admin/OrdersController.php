@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\Item;
 use App\Order;
 use App\Paymenttype;
+use App\Zone;
 use Faker\Provider\ar_SA\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -38,7 +39,7 @@ class OrdersController extends Controller
                 ->orWhere('quantity', 'LIKE', "%$keyword%")
                 ->orWhere('price', 'LIKE', "%$keyword%")
                 ->orWhere('Location_address', 'LIKE', "%$keyword%")
-                ->orWhere('city_id', 'LIKE', "%$keyword%")
+                ->orWhere('zone_id', 'LIKE', "%$keyword%")
                 ->orWhere('telephone', 'LIKE', "%$keyword%")
                 ->orWhere('notes', 'LIKE', "%$keyword%")
                 ->orWhere('delivery_process', 'LIKE', "%$keyword%")
@@ -54,10 +55,10 @@ class OrdersController extends Controller
     public function create()
     {
         $items =Item::all();
-        $citys =City::all();
+        $zones =Zone::all();
         $categorys =Category::all();
         $deliverycompanys= Deliverycompany::all();
-        return view('admin.orders.create',compact('items','citys','categorys','deliverycompanys'));
+        return view('admin.orders.create',compact('items','zones','categorys','deliverycompanys'));
     }
 
 
@@ -127,10 +128,10 @@ class OrdersController extends Controller
     {
         $order = Order::findOrFail($id);
         $items =Item::all();
-        $citys =City::all();
+        $zones =Zone::all();
         $categorys =Category::all();
         $deliverycompanys= Deliverycompany::all();
-        return view('admin.orders.edit', compact('order','items','citys','categorys','deliverycompanys'));
+        return view('admin.orders.edit', compact('order','items','zones','categorys','deliverycompanys'));
     }
 
 

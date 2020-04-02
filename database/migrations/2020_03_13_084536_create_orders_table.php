@@ -27,14 +27,14 @@ class CreateOrdersTable extends Migration
             $table->integer('quantity')->nullable();
             $table->double('price')->nullable();
             $table->string('Location_address')->nullable();
-            $table->integer('city_id')->nullable()->unsigned();
+            $table->integer('zone_id')->nullable()->unsigned();
             $table->string('telephone')->nullable();
             $table->string('notes')->nullable();
             $table->string('first_payment')->nullable();
             $table->string('deposit_type')->nullable();
             $table->string('delivery_process')->nullable();
             $table->foreign('item_id')->references('id')->on('items')->sign;
-            $table->foreign('city_id')->references('id')->on('citys')->sign;
+            $table->foreign('zone_id')->references('id')->on('zones')->sign;
             $table->foreign('deliverycompany_id')->references('id')->on('deliverycompanys')->sign;
             $table->foreign('category_id')->references('id')->on('categorys')->sign;
             });
