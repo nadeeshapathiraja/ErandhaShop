@@ -103,19 +103,19 @@
     </div>
     <div class="col-md-2">
         <div class="form-group {{ $errors->has('quantity') ? 'has-error' : ''}}">
-            <label for="quantity" class="control-label">{{ 'Item Quantity' }}</label>
+            <label for="quantity" class="control-label">{{ 'Quantity' }}</label>
             <input class="form-control" name="quantity" type="number" id="quantity" value="{{ isset($order->quantity) ? $order->quantity : ''}}" >
             {!! $errors->first('quantity', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
     <div class="col-md-2">
         <label for="action" class="control-label">{{ 'Action' }}</label>
-        <input type="button" class="form-control" id="button1" value="Add" onclick="add_element_to_array(); display_array();"></input>
+        <input type="button" class="form-control" id="button1" value="Add" onclick="add_element_to_array(); display_array(); getMessage();"></input>
     </div>
 </div>
 
 <div class="table-responsive">
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped" id="itemTable">
         <thead>
             <tr>
                 <th>#</th>
@@ -125,17 +125,12 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="itemTableBody">
 
         </tbody>
     </table>
 </div>
 
-{{-- <div class="form-group {{ $errors->has('price') ? 'has-error' : ''}}">
-    <label for="price" class="control-label">{{ 'Price' }}</label>
-    <input class="form-control" name="price" type="number" id="price" value="{{ isset($order->price) ? $order->price : ''}}" >
-    {!! $errors->first('price', '<p class="help-block">:message</p>') !!}
-</div> --}}
 <div class="form-group {{ $errors->has('Location_address') ? 'has-error' : ''}}">
     <label for="Location_address" class="control-label">{{ 'Location Address' }}</label>
     <input class="form-control" name="Location_address" type="text" id="Location_address" value="{{ isset($order->Location_address) ? $order->Location_address : ''}}" >

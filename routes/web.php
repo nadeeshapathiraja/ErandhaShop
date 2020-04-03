@@ -30,6 +30,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+//for views
 Route::resource('zones', 'Admin\\ZonesController');
 Route::resource('deliverycompanys', 'Admin\\DeliverycompanysController');
 Route::resource('citys', 'Admin\\CitysController');
@@ -39,7 +41,10 @@ Route::resource('paymenttypes', 'Admin\\PaymenttypesController');
 Route::resource('moneytransactions', 'Admin\\MoneytransactionsController');
 Route::resource('supplyers', 'Admin\\SupplyersController');
 Route::resource('items', 'Admin\\itemsController');
-
 Route::resource('clients', 'Admin\\ClientsController');
 Route::resource('payments', 'Admin\\PaymentsController');
 Route::resource('payments', 'Admin\\PaymentsController');
+
+
+//Ajax request for shopping cart
+Route::post('/getDataAjax','Admin\\OrdersController@getDataAjax');
