@@ -31,7 +31,11 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
+                                        <th>Company Name</th>
+                                        <th>Max Weight</th>
+                                        <th>Additional 1Kg</th>
+                                        <th>COD less</th>
+                                        <th>COD above</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -40,6 +44,10 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->name }}</td>
+                                        <td>{{ $item->maxweight }}</td>
+                                        <td>{{ $item->additional }}</td>
+                                        <td>{{ $item->cod_less }}</td>
+                                        <td>{{ $item->cod_above }}</td>
                                         <td>
                                             <a href="{{ url('/deliverycompanys/' . $item->id) }}" title="View Deliverycompany"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/deliverycompanys/' . $item->id . '/edit') }}" title="Edit Deliverycompany"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

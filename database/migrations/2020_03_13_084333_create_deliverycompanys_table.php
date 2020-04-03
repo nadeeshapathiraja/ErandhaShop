@@ -17,6 +17,10 @@ class CreateDeliverycompanysTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('name')->nullable();
+            $table->double('maxweight')->nullable();
+            $table->double('additional')->nullable();
+            $table->double('cod_less')->nullable();
+            $table->double('cod_above')->nullable();
             });
     }
 
