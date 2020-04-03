@@ -23,7 +23,7 @@
 </div>
 
 <div class="form-group {{ $errors->has('cod_above') ? 'has-error' : ''}}">
-    <label for="cod_above" class="control-label">{{ 'COD above' }}</label>
+    <label for="cod_above" class="control-label">{{ 'COD above than Limit' }}</label>
     <input class="form-control" name="cod_above" type="number" id="cod_above" value="{{ isset($deliverycompany->cod_above) ? $deliverycompany->cod_above : ''}}" >
     {!! $errors->first('cod_above', '<p class="help-block">:message</p>') !!}
 </div>

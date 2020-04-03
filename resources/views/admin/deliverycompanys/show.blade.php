@@ -25,9 +25,25 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th>ID</th><td>{{ $deliverycompany->id }}</td>
+                                        <th>ID</th>
+                                        <td>{{ $deliverycompany->id }}</td>
                                     </tr>
-                                    <tr><th> Name </th><td> {{ $deliverycompany->name }} </td></tr>
+                                    <tr>
+                                        <th> Max Weight </th>
+                                        <td> {{ $deliverycompany->maxweight }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Price For Additional 1Kg </th>
+                                        <td> {{ $deliverycompany->additional }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> COD less than Limit </th>
+                                        <td> {{ $deliverycompany->cod_less }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> COD above than Limit </th>
+                                        <td> {{ $deliverycompany->cod_above }} </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
