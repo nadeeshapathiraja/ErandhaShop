@@ -29,6 +29,15 @@
                                         <td>{{ $deliverycompany->id }}</td>
                                     </tr>
                                     <tr>
+                                        <th>ID</th>
+                                        <td>{{ $deliverycompany->zone}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ID</th>
+                                        <td>{{ $deliverycompany->price }}</td>
+                                    </tr>
+
+                                    <tr>
                                         <th> Max Weight </th>
                                         <td> {{ $deliverycompany->maxweight }} </td>
                                     </tr>

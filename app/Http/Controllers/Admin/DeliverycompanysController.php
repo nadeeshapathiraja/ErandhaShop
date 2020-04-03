@@ -22,6 +22,12 @@ class DeliverycompanysController extends Controller
 
         if (!empty($keyword)) {
             $deliverycompanys = Deliverycompany::where('name', 'LIKE', "%$keyword%")
+                ->orWhere('zone', 'LIKE', "%$keyword%")
+                ->orWhere('price', 'LIKE', "%$keyword%")
+                ->orWhere('maxweight', 'LIKE', "%$keyword%")
+                ->orWhere('additional', 'LIKE', "%$keyword%")
+                ->orWhere('cod_less', 'LIKE', "%$keyword%")
+                ->orWhere('cod_above', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $deliverycompanys = Deliverycompany::latest()->paginate($perPage);

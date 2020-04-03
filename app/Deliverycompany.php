@@ -25,7 +25,7 @@ class Deliverycompany extends Model
      *
      * @var array
      */
-    protected $fillable = ['name','maxweight','additional','cod_less','cod_above'];
+    protected $fillable = ['name', 'zone', 'price', 'maxweight','additional','cod_less','cod_above'];
 
 
 }

@@ -4,6 +4,18 @@
     {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
 </div>
 
+<div class="form-group {{ $errors->has('zone') ? 'has-error' : ''}}">
+    <label for="zone" class="control-label">{{ 'Zone Name' }}</label>
+    <input class="form-control" name="zone" type="text" id="zone" value="{{ isset($deliverycompany->zone) ? $deliverycompany->zone : ''}}" >
+    {!! $errors->first('zone', '<p class="help-block">:message</p>') !!}
+</div>
+
+<div class="form-group {{ $errors->has('price') ? 'has-error' : ''}}">
+    <label for="price" class="control-label">{{ 'Zone Price' }}</label>
+    <input class="form-control" name="price" type="number" id="price" value="{{ isset($deliverycompany->price) ? $deliverycompany->price : ''}}" >
+    {!! $errors->first('price', '<p class="help-block">:message</p>') !!}
+</div>
+
 <div class="form-group {{ $errors->has('maxweight') ? 'has-error' : ''}}">
     <label for="maxweight" class="control-label">{{ 'Max Weight' }}</label>
     <input class="form-control" name="maxweight" type="number" id="maxweight" value="{{ isset($deliverycompany->maxweight) ? $deliverycompany->maxweight : ''}}" >
