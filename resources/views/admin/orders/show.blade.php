@@ -67,8 +67,8 @@
                                         <td> {{ $order->quantity }} </td>
                                     </tr>
                                     <tr>
-                                        <th> City </th>
-                                        <td> {{ $order->city->name }} </td>
+                                        <th> Zone Name </th>
+                                        <td> {{ $order->zone->name }} </td>
                                     </tr>
                                     <tr>
                                         <th> Delivery Address </th>

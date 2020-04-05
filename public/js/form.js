@@ -5,9 +5,9 @@ var array = Array();
 
 function add_element_to_array() {
     var object = {
-        item_id: document.getElementById("item_id").value,
-        quantity: document.getElementById("quantity").value,
-        category_id: document.getElementById("category_id").value
+        item_id: document.getElementById("item_id").innerText,
+        category_id: document.getElementById("category_id").innerHTML,
+        quantity: document.getElementById("quantity").value
     }
     array.push(object)
     x++;

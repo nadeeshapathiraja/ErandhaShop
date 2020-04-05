@@ -183,7 +183,7 @@ class OrdersController extends Controller
         return redirect('orders')->with('flash_message', 'Order deleted!');
     }
 
-    //for shopping cart
+    //for shopping cart 
     public function getDataAjax(Request $request) {
         return response()->json(array('msg'=> $request->arraydata), 200);
     }
