@@ -39,21 +39,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($orders as $item)
+                                @foreach($orders as $order)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->id }}</td>
-                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $order->id }}</td>
+                                        <td>{{ $order->name }}</td>
                                         <td>
-                                            @if($item->delivery_process === 'Pickup')
+                                            @if($order->delivery_process === 'Pickup')
                                                 <button style="width: 150px" class="btn btn-secondary">PickUp Order</button>
-                                            @elseif($item->delivery_process === 'Onprocess')
+                                            @elseif($order->delivery_process === 'Onprocess')
                                                 <button style="width: 150px" class="btn btn-info">OnProcess Order</button>
-                                            @elseif($item->delivery_process === 'Dispatch')
+                                            @elseif($order->delivery_process === 'Dispatch')
                                                 <button style="width: 150px" class="btn btn-primary">Dispatch Item</button>
-                                            @elseif($item->delivery_process === 'Deliverd')
+                                            @elseif($order->delivery_process === 'Deliverd')
                                                 <button style="width: 150px" class="btn btn-success">Deliverd Item</button>
-                                            @elseif($item->delivery_process === 'Reject')
+                                            @elseif($order->delivery_process === 'Reject')
                                                 <button style="width: 150px" class="btn btn-light">Rejected Item</button>
                                             @else
                                                 <button style="width: 150px" class="btn btn-danger">Return Item</button>
@@ -61,10 +61,10 @@
                                         </td>
                                         {{--  <td>{{ $item->item->name}}</td>  --}}
                                         <td>
-                                            <a href="{{ url('/orders/' . $item->id) }}" title="View Order"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/orders/' . $item->id . '/edit') }}" title="Edit Order"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            <a href="{{ url('/orders/' . $order->id) }}" title="View Order"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                            <a href="{{ url('/orders/' . $order->id . '/edit') }}" title="Edit Order"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
-                                            <form method="POST" action="{{ url('/orders' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                            <form method="POST" action="{{ url('/orders' . '/' . $order->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete Order" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
