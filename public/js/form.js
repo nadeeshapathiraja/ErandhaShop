@@ -7,7 +7,8 @@ function add_element_to_array() {
     var object = {
         item_id: document.getElementById("item_id").innerText,
         category_id: document.getElementById("category_id").innerHTML,
-        quantity: document.getElementById("quantity").value
+        quantity: document.getElementById("quantity").value,
+        unit_price: document.getElementById("unit_price").value
     }
     array.push(object)
     x++;
@@ -28,11 +29,13 @@ function display_array() {
         var category = row.insertCell(1);
         var item = row.insertCell(2);
         var quantity = row.insertCell(3);
-        var action = row.insertCell(4);
+        var unit_price = row.insertCell(4);
+        var action = row.insertCell(5);
         number.innerHTML = y + 1;
         category.innerHTML = array[y].category_id;
         item.innerHTML = array[y].item_id;
         quantity.innerHTML = array[y].quantity;
+        unit_price.innerHTML = array[y].unit_price;
         action.innerHTML = `<button onclick="remove_from__array(${y});">Remove</button>`;
     }
 }
@@ -76,7 +79,7 @@ function openCity(evt, cityName) {
         tabcontent[i].style.display = "none";
     }
 
-    // Get all elements with class="tablinks" and remove the class "active"m 
+    // Get all elements with class="tablinks" and remove the class "active"m
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");

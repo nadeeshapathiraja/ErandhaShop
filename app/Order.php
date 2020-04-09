@@ -13,7 +13,7 @@ class Order extends Model
     protected $primaryKey = 'id';
 
 
-    protected $fillable = ['date', 'month', 'category_id', 'deliverycompany_id', 'shipment_code', 'deposit_type', 'first_payment', 'name', 'order_source', 'item_id', 'quantity', 'price', 'Location_address', 'zone_id', 'telephone', 'notes', 'delivery_process'];
+    protected $fillable = ['date', 'month', 'category_id', 'unit_price', 'deliverycompany_id', 'shipment_code', 'deposit_type', 'first_payment', 'name', 'order_source', 'item_id', 'quantity', 'price', 'Location_address', 'zone_id', 'telephone', 'notes', 'delivery_process'];
 
 
     public static function order_count(){

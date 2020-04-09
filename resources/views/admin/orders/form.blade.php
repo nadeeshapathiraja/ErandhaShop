@@ -58,78 +58,105 @@
     </select>
     {!! $errors->first('order_source', '<p class="help-block">:message</p>') !!}
 </div>
+
+{{--  shopping cart  --}}
 <div class="row">
-    <div class="col-md-4">
-        <div class="form-group {{ $errors->has('category_id') ? 'has-error' : ''}}">
-            <label for="item_id" class="control-label">{{ 'Catergory Name' }}</label>s
-            <select class="form-control" name="category_id" id="category_id" value="{{ isset($order->category_id) ? $order->category_id : ''}}">
-                @foreach ($categorys as $category)
-                    @if($formMode === 'edit')
-                        <option value="{{ $category->id }}" {{ ( $category->id == $order->category_id) ? 'selected' : '' }}>{{ $category->name }}</option>
-                    @else
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endif
-                @endforeach
-            </select>
-            <br/>
-            <div id="Result">
+    <div class="card" style="width: 100%">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group {{ $errors->has('category_id') ? 'has-error' : ''}}">
+                        <label for="item_id" class="control-label">{{ 'Catergory Name' }}</label>s
+                        <select class="form-control" name="category_id" id="category_id" value="{{ isset($order->category_id) ? $order->category_id : ''}}">
+                            @foreach ($categorys as $category)
+                                @if($formMode === 'edit')
+                                    <option value="{{ $category->id }}" {{ ( $category->id == $order->category_id) ? 'selected' : '' }}>{{ $category->name }}</option>
+                                @else
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                        <br/>
+                        <div id="Result">
+
+                        </div>
+
+                        {!! $errors->first('category_id', '<p class="help-block">:message</p>') !!}
+
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group {{ $errors->has('item_id') ? 'has-error' : ''}}">
+                        <label for="item_id" class="control-label">{{ 'Item Name' }}</label>
+                        <select class="form-control" name="item_id" id="item_id" value="{{ isset($order->item_id) ? $order->item_id : ''}}">
+                            @foreach ($items as $item)
+                                @if($formMode === 'edit')
+                                    <option value="{{ $item->id }}" {{ ( $item->id == $item->item_id) ? 'selected' : '' }}>{{ $item->name }}</option>
+                                @else
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                        <br/>
+                        <div id="Result">
+
+                        </div>
+
+                        {!! $errors->first('item_id', '<p class="help-block">:message</p>') !!}
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group {{ $errors->has('quantity') ? 'has-error' : ''}}">
+                        <label for="quantity" class="control-label">{{ 'Quantity' }}</label>
+                        <input class="form-control" name="quantity" type="number" id="quantity" value="{{ isset($order->quantity) ? $order->quantity : ''}}" >
+                        {!! $errors->first('quantity', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+
 
             </div>
-
-            {!! $errors->first('category_id', '<p class="help-block">:message</p>') !!}
-
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group {{ $errors->has('item_id') ? 'has-error' : ''}}">
-            <label for="item_id" class="control-label">{{ 'Item Name' }}</label>
-            <select class="form-control" name="item_id" id="item_id" value="{{ isset($order->item_id) ? $order->item_id : ''}}">
-                @foreach ($items as $item)
-                    @if($formMode === 'edit')
-                        <option value="{{ $item->id }}" {{ ( $item->id == $item->item_id) ? 'selected' : '' }}>{{ $item->name }}</option>
-                    @else
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                    @endif
-                @endforeach
-            </select>
-            <br/>
-            <div id="Result">
-
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group {{ $errors->has('unit_price') ? 'has-error' : ''}}">
+                        <label for="unit_price" class="control-label">{{ 'Selling Price For Unit' }}</label>
+                        <input class="form-control" name="unit_price" type="number" id="unit_price" value="{{ isset($order->unit_price) ? $order->unit_price : ''}}" >
+                        {!! $errors->first('unit_price', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <label for="action" class="control-label">{{ 'Action' }}</label>
+                    <input type="button" class="form-control" id="button1" value="Add" onclick="add_element_to_array(); display_array(); getMessage();"></input>
+                </div>
             </div>
 
-            {!! $errors->first('item_id', '<p class="help-block">:message</p>') !!}
+
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped" id="itemTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Category Name</th>
+                            <th>Item Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="itemTableBody">
+
+                    </tbody>
+                </table>
+            </div>
+
 
         </div>
-    </div>
-    <div class="col-md-2">
-        <div class="form-group {{ $errors->has('quantity') ? 'has-error' : ''}}">
-            <label for="quantity" class="control-label">{{ 'Quantity' }}</label>
-            <input class="form-control" name="quantity" type="number" id="quantity" value="{{ isset($order->quantity) ? $order->quantity : ''}}" >
-            {!! $errors->first('quantity', '<p class="help-block">:message</p>') !!}
-        </div>
-    </div>
-    <div class="col-md-2">
-        <label for="action" class="control-label">{{ 'Action' }}</label>
-        <input type="button" class="form-control" id="button1" value="Add" onclick="add_element_to_array(); display_array(); getMessage();"></input>
-    </div>
+      </div>
 </div>
 
-<div class="table-responsive">
-    <table class="table table-bordered table-striped" id="itemTable">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Category Name</th>
-                <th>Item Name</th>
-                <th>Quantity</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="itemTableBody">
 
-        </tbody>
-    </table>
-</div>
 
 <div class="form-group {{ $errors->has('Location_address') ? 'has-error' : ''}}">
     <label for="Location_address" class="control-label">{{ 'Location Address' }}</label>
