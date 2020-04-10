@@ -8,7 +8,9 @@ function add_element_to_array() {
         item_id: document.getElementById("item_id").innerText,
         category_id: document.getElementById("category_id").innerHTML,
         quantity: document.getElementById("quantity").value,
-        unit_price: document.getElementById("unit_price").value
+        unit_price: document.getElementById("unit_price").value,
+        price: document.getElementById("quantity").value * document.getElementById("unit_price").value
+
     }
     array.push(object)
     x++;
@@ -29,13 +31,13 @@ function display_array() {
         var category = row.insertCell(1);
         var item = row.insertCell(2);
         var quantity = row.insertCell(3);
-        var unit_price = row.insertCell(4);
+        var price = row.insertCell(4);
         var action = row.insertCell(5);
         number.innerHTML = y + 1;
         category.innerHTML = array[y].category_id;
         item.innerHTML = array[y].item_id;
         quantity.innerHTML = array[y].quantity;
-        unit_price.innerHTML = array[y].unit_price;
+        price.innerHTML = array[y].price;
         action.innerHTML = `<button onclick="remove_from__array(${y});">Remove</button>`;
     }
 }
