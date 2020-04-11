@@ -162,12 +162,12 @@ class OrdersController extends Controller
             }
         }
 
-        //get total price in order table
-        $order_price = DB::table('orders')->where('id',$id)->first();
-        $order_quantity=$item->quantity;
+        // //get total price in order table
+        // $order_price = DB::table('orders')->where('id',$id)->first();
+        // $order_quantity=$item->quantity;
 
-        $price=$item_price*$order_quantity;
-        DB::table('orders')->update(['price' =>($item_price*$order_quantity)]);
+        // $price=$item_price*$order_quantity;
+        // DB::table('orders')->update(['price' =>($item_price*$order_quantity)]);
 
 
         $order->update($requestData);
@@ -183,7 +183,7 @@ class OrdersController extends Controller
         return redirect('orders')->with('flash_message', 'Order deleted!');
     }
 
-    //for shopping cart 
+    //for shopping cart
     public function getDataAjax(Request $request) {
         return response()->json(array('msg'=> $request->arraydata), 200);
     }

@@ -72,7 +72,7 @@
                                 @if($formMode === 'edit')
                                     <option value="{{ $category->id }}" {{ ( $category->id == $order->category_id) ? 'selected' : '' }}>{{ $category->name }}</option>
                                 @else
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    <option selected="selected" value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endif
                             @endforeach
                         </select>
@@ -93,7 +93,7 @@
                                 @if($formMode === 'edit')
                                     <option value="{{ $item->id }}" {{ ( $item->id == $item->item_id) ? 'selected' : '' }}>{{ $item->name }}</option>
                                 @else
-                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    <option selected="selected" value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endif
                             @endforeach
                         </select>
@@ -149,6 +149,16 @@
 
                     </tbody>
                 </table>
+            </div>
+            <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4">
+                    <div class="form-group {{ $errors->has('price') ? 'has-error' : ''}}">
+                        <label for="Location_address" class="control-label">{{ 'Total Price ' }}</label>
+                        <input class="form-control" name="price" type="hidden" id="price" value="{{ isset($order->price) ? $order->price : ''}}" >
+                        {!! $errors->first('price', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
             </div>
 
 

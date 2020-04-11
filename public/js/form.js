@@ -6,12 +6,13 @@ var array = Array();
 function add_element_to_array() {
     var object = {
         item_id: document.getElementById("item_id").innerText,
-        category_id: document.getElementById("category_id").innerHTML,
+        category_id: document.getElementById("category_id").innerText,
         quantity: document.getElementById("quantity").value,
         unit_price: document.getElementById("unit_price").value,
         price: document.getElementById("quantity").value * document.getElementById("unit_price").value
 
     }
+    console.log(category_id);
     array.push(object)
     x++;
     z++;
