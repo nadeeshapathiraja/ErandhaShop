@@ -2,20 +2,35 @@ var x = 0;
 var z = 0;
 
 var array = Array();
+var dbarray = Array();
 
 function add_element_to_array() {
+    var sel = document.getElementById("category_id");
     var object = {
         item_id: document.getElementById("item_id").innerText,
-        category_id: document.getElementById("category_id").innerText,
+        category_id: sel.options[sel.selectedIndex].text,
         quantity: document.getElementById("quantity").value,
         unit_price: document.getElementById("unit_price").value,
-        price: document.getElementById("quantity").value * document.getElementById("unit_price").value
-
+        price: document.getElementById("quantity").value * document.getElementById("unit_price").value,
+        // total_price: document.getElementById("quantity").value * document.getElementById("unit_price").value,
     }
-    console.log(category_id);
+    var i;
+    for (i = 0; i < add_element_to_array.length; i++) {
+        total_price += add_element_to_array[5];
+    }
     array.push(object)
     x++;
     z++;
+
+    var dbobject = {
+        item_id: document.getElementById("item_id").value,
+        category_id: document.getElementById("category_id").value,
+        quantity: document.getElementById("quantity").value,
+        unit_price: document.getElementById("unit_price").value,
+        price: document.getElementById("quantity").value * document.getElementById("unit_price").value,
+        // total_price: document.getElementById("quantity").value * document.getElementById("unit_price").value,
+    }
+    dbarray.push(object)
 }
 
 
@@ -26,6 +41,7 @@ function display_array() {
     for (var i = table.rows.length - 1; i > 0; i--) {
         table.deleteRow(i);
     }
+    var totalPrice = 0;
     for (var y = 0; y < array.length; y++) {
         var row = table.insertRow(-1);
         var number = row.insertCell(0);
@@ -40,7 +56,9 @@ function display_array() {
         quantity.innerHTML = array[y].quantity;
         price.innerHTML = array[y].price;
         action.innerHTML = `<button onclick="remove_from__array(${y});">Remove</button>`;
+        totalPrice += array[y].price
     }
+    document.getElementById("price").value = totalPrice;
 }
 
 function remove_from__array(index) {

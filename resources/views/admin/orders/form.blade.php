@@ -155,7 +155,7 @@
                 <div class="col-md-4">
                     <div class="form-group {{ $errors->has('price') ? 'has-error' : ''}}">
                         <label for="Location_address" class="control-label">{{ 'Total Price ' }}</label>
-                        <input class="form-control" name="price" type="hidden" id="price" value="{{ isset($order->price) ? $order->price : ''}}" >
+                        <input class="form-control" name="price" type="text" id="price" value="{{ isset($order->price) ? $order->price : ''}}" readonly>
                         {!! $errors->first('price', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
