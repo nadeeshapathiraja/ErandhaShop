@@ -67,7 +67,7 @@
                 <div class="col-md-4">
                     <div class="form-group {{ $errors->has('category_id') ? 'has-error' : ''}}">
                         <label for="item_id" class="control-label">{{ 'Catergory Name' }}</label>s
-                        <select class="form-control" name="category_id" id="category_id" value="{{ isset($order->category_id) ? $order->category_id : ''}}">
+                        <select class="form-control dynamic input-lg" name="category_id" id="category_id" data-dependent="item" value="{{ isset($order->category_id) ? $order->category_id : ''}}">
                             @foreach ($categorys as $category)
                                 @if($formMode === 'edit')
                                     <option value="{{ $category->id }}" {{ ( $category->id == $order->category_id) ? 'selected' : '' }}>{{ $category->name }}</option>
@@ -120,7 +120,7 @@
                 <div class="col-md-6">
                     <div class="form-group {{ $errors->has('unit_price') ? 'has-error' : ''}}">
                         <label for="unit_price" class="control-label">{{ 'Selling Price For Unit' }}</label>
-                        <input class="form-control" name="unit_price" type="number" id="unit_price" value="{{ isset($order->unit_price) ? $order->unit_price : ''}}" >
+                        <input class="form-control" name="unit_price" type="number" id="unit_price" >
                         {!! $errors->first('unit_price', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>

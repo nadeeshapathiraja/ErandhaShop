@@ -56,8 +56,11 @@ class OrdersController extends Controller
     {
         $items =Item::all();
         $zones =Zone::all();
-        $categorys =Category::all();
+        //$categorys =Category::all();
         $deliverycompanys= Deliverycompany::all();
+        $categorys = DB::table('categorys')
+         ->groupBy('id')
+         ->get();
         return view('admin.orders.create',compact('items','zones','categorys','deliverycompanys'));
     }
 
@@ -111,6 +114,8 @@ class OrdersController extends Controller
         $paymentType->pay_to_future=(($item_price*$order_quantity)-$first_payment);
 
         $paymentType->save();
+
+
 
         return redirect('orders')->with('flash_message', 'Order added!');
     }
