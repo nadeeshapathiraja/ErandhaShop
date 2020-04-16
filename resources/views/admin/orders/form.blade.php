@@ -68,11 +68,12 @@
                     <div class="form-group {{ $errors->has('category_id') ? 'has-error' : ''}}">
                         <label for="item_id" class="control-label">{{ 'Catergory Name' }}</label>s
                         <select class="form-control dynamic input-lg" name="category_id" id="category_id" data-dependent="item" value="{{ isset($order->category_id) ? $order->category_id : ''}}">
+                            <option value="">Select Category</option>
                             @foreach ($categorys as $category)
                                 @if($formMode === 'edit')
                                     <option value="{{ $category->id }}" {{ ( $category->id == $order->category_id) ? 'selected' : '' }}>{{ $category->name }}</option>
                                 @else
-                                    <option selected="selected" value="{{ $category->id }}">{{ $category->name }}</option>
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endif
                             @endforeach
                         </select>
@@ -89,11 +90,12 @@
                     <div class="form-group {{ $errors->has('item_id') ? 'has-error' : ''}}">
                         <label for="item_id" class="control-label">{{ 'Item Name' }}</label>
                         <select class="form-control" name="item_id" id="item_id" value="{{ isset($order->item_id) ? $order->item_id : ''}}">
+                            <option value="">Select Item</option>
                             @foreach ($items as $item)
                                 @if($formMode === 'edit')
                                     <option value="{{ $item->id }}" {{ ( $item->id == $item->item_id) ? 'selected' : '' }}>{{ $item->name }}</option>
                                 @else
-                                    <option selected="selected" value="{{ $item->id }}">{{ $item->name }}</option>
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endif
                             @endforeach
                         </select>
