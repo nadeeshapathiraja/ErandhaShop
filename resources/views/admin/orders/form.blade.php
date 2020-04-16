@@ -108,6 +108,7 @@
 
                     </div>
                 </div>
+                {{ csrf_field() }}
                 <div class="col-md-3">
                     <div class="form-group {{ $errors->has('quantity') ? 'has-error' : ''}}">
                         <label for="quantity" class="control-label">{{ 'Quantity' }}</label>
