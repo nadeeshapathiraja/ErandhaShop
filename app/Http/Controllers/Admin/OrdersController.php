@@ -57,9 +57,12 @@ class OrdersController extends Controller
         $items =Item::all();
         $zones =Zone::all();
         $deliverycompanys= Deliverycompany::all();
+
+        //get category for page
         $categorys = DB::table('categorys')
          ->groupBy('id')
          ->get();
+
         return view('admin.orders.create',compact('items','zones','categorys','deliverycompanys'));
     }
 
@@ -82,7 +85,7 @@ class OrdersController extends Controller
         $order_quantity=$order->quantity;
 
 
-        DB::table('orders')->where('id',$id)->update(['price' =>($item_price*$order_quantity)]);
+        // DB::table('orders')->where('id',$id)->update(['price' =>($item_price*$order_quantity)]);
 
 
 
