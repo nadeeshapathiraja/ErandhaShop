@@ -56,7 +56,6 @@ class OrdersController extends Controller
     {
         $items =Item::all();
         $zones =Zone::all();
-        //$categorys =Category::all();
         $deliverycompanys= Deliverycompany::all();
         $categorys = DB::table('categorys')
          ->groupBy('id')
