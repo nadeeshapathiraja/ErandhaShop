@@ -29,7 +29,6 @@ function add_element_to_array() {
         quantity: document.getElementById("quantity").value,
         unit_price: document.getElementById("unit_price").value,
         price: document.getElementById("quantity").value * document.getElementById("unit_price").value,
-        // total_price: document.getElementById("quantity").value * document.getElementById("unit_price").value,
     }
     dbarray.push(object)
 }
@@ -92,27 +91,28 @@ function getMessage() {
 //select list dynamicaly change '/fetchData',
 $(document).ready(function() {
     $('.dynamic').change(function() {
-            if ($(this).val() != '') {
-                var select = $(this).attr("id");
-                var value = $(this).val();
-                var dependent = $(this).data('dependent');
-                var _token = $('input[name="_token"]').val();
-                $.ajax({
-                    type: 'POST',
-                    url: '/fetchData',
-                    data: {
-                        select: select,
-                        value: value,
-                        _token: _token,
-                        dependent: dependent
-                    },
-                    success: function(result) {
-                        $('#item_id').empty().append(result);
-                    }
-                })
-            }
-        })
-        //selsect unit price for selected item
+        if ($(this).val() != '') {
+            var select = $(this).attr("id");
+            var value = $(this).val();
+            var dependent = $(this).data('dependent');
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                type: 'POST',
+                url: '/fetchData',
+                data: {
+                    select: select,
+                    value: value,
+                    _token: _token,
+                    dependent: dependent
+                },
+                success: function(result) {
+                    $('#item_id').empty().append(result);
+                }
+            })
+        }
+    })
+
+    //selsect unit price for selected item
     $('.abcd').change(function() {
         if ($(this).val() != '') {
             var select = $(this).attr("id");
