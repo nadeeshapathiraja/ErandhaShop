@@ -6,14 +6,14 @@ var array = Array();
 var dbarray = Array();
 
 function add_element_to_array() {
-    var sel = document.getElementById("category_id");
+    var selcategory = document.getElementById("category_id");
+    var selitem = document.getElementById("item_id");
     var object = {
-        item_id: document.getElementById("item_id").innerText,
-        category_id: sel.options[sel.selectedIndex].text,
+        item_id: selitem.options[selitem.selectedIndex].text,
+        category_id: selcategory.options[selcategory.selectedIndex].text,
         quantity: document.getElementById("quantity").value,
         unit_price: document.getElementById("unit_price").value,
         price: document.getElementById("quantity").value * document.getElementById("unit_price").value,
-        // total_price: document.getElementById("quantity").value * document.getElementById("unit_price").value,
     }
     var i;
     for (i = 0; i < add_element_to_array.length; i++) {
@@ -92,27 +92,27 @@ function getMessage() {
 //select list dynamicaly change '/fetchData',
 $(document).ready(function() {
     $('.dynamic').change(function() {
-        if ($(this).val() != '') {
-            var select = $(this).attr("id");
-            var value = $(this).val();
-            var dependent = $(this).data('dependent');
-            var _token = $('input[name="_token"]').val();
-            $.ajax({
-                type: 'POST',
-                url: '/fetchData',
-                data: {
-                    select: select,
-                    value: value,
-                    _token: _token,
-                    dependent: dependent
-                },
-                success: function(result) {
-                    $('#item_id').empty().append(result);
-                }
-            })
-        }
-    })
-
+            if ($(this).val() != '') {
+                var select = $(this).attr("id");
+                var value = $(this).val();
+                var dependent = $(this).data('dependent');
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '/fetchData',
+                    data: {
+                        select: select,
+                        value: value,
+                        _token: _token,
+                        dependent: dependent
+                    },
+                    success: function(result) {
+                        $('#item_id').empty().append(result);
+                    }
+                })
+            }
+        })
+        //selsect unit price for selected item
     $('.abcd').change(function() {
         if ($(this).val() != '') {
             var select = $(this).attr("id");
@@ -129,7 +129,7 @@ $(document).ready(function() {
                     dependent: dependent
                 },
                 success: function(result) {
-                    $('#unit_price').val(result)
+                    $('#unit_price').empty().val(result)
                 }
             })
         }

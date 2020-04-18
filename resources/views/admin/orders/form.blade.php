@@ -91,13 +91,6 @@
                         <label for="item_id" class="control-label">{{ 'Item Name' }}</label>
                         <select class="form-control abcd input-lg" name="item_id" id="item_id" value="{{ isset($order->item_id) ? $order->item_id : ''}}">
                             <option value="">Select Item</option>
-                            {{--  @foreach ($items as $item)
-                                @if($formMode === 'edit')
-                                    <option value="{{ $item->id }}" {{ ( $item->id == $item->item_id) ? 'selected' : '' }}>{{ $item->name }}</option>
-                                @else
-                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                @endif
-                            @endforeach  --}}
                         </select>
                         <br/>
                         <div id="Result">
