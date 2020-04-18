@@ -48,3 +48,5 @@ Route::resource('payments', 'Admin\\PaymentsController');
 
 //Ajax request for shopping cart
 Route::post('/getDataAjax','Admin\\OrdersController@getDataAjax');
+Route::post('/fetchData','Admin\\OrdersController@fetchData');
+Route::post('/fetchPrice','Admin\\OrdersController@fetchPrice');

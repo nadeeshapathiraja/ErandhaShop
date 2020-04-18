@@ -89,15 +89,15 @@
                 <div class="col-md-5">
                     <div class="form-group {{ $errors->has('item_id') ? 'has-error' : ''}}">
                         <label for="item_id" class="control-label">{{ 'Item Name' }}</label>
-                        <select class="form-control" name="item_id" id="item_id" value="{{ isset($order->item_id) ? $order->item_id : ''}}">
+                        <select class="form-control abcd input-lg" name="item_id" id="item_id" value="{{ isset($order->item_id) ? $order->item_id : ''}}">
                             <option value="">Select Item</option>
-                            @foreach ($items as $item)
+                            {{--  @foreach ($items as $item)
                                 @if($formMode === 'edit')
                                     <option value="{{ $item->id }}" {{ ( $item->id == $item->item_id) ? 'selected' : '' }}>{{ $item->name }}</option>
                                 @else
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endif
-                            @endforeach
+                            @endforeach  --}}
                         </select>
                         <br/>
                         <div id="Result">
@@ -123,7 +123,7 @@
                 <div class="col-md-6">
                     <div class="form-group {{ $errors->has('unit_price') ? 'has-error' : ''}}">
                         <label for="unit_price" class="control-label">{{ 'Selling Price For Unit' }}</label>
-                        <input class="form-control" name="unit_price" type="number" id="unit_price" >
+                        <input class="form-control" name="unit_price" type="number" id="unit_price" readonly>
                         {!! $errors->first('unit_price', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>

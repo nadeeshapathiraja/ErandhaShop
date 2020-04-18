@@ -54,7 +54,7 @@ class OrdersController extends Controller
 
     public function create()
     {
-        $items =Item::all();
+        //$items =Item::all();
         $zones =Zone::all();
         $deliverycompanys= Deliverycompany::all();
 
@@ -63,7 +63,7 @@ class OrdersController extends Controller
          ->groupBy('id')
          ->get();
 
-        return view('admin.orders.create',compact('items','zones','categorys','deliverycompanys'));
+        return view('admin.orders.create',compact('zones','categorys','deliverycompanys'));
     }
 
 
@@ -134,11 +134,11 @@ class OrdersController extends Controller
     public function edit($id)
     {
         $order = Order::findOrFail($id);
-        $items =Item::all();
+        //$items =Item::all();
         $zones =Zone::all();
         $categorys =Category::all();
         $deliverycompanys= Deliverycompany::all();
-        return view('admin.orders.edit', compact('order','items','zones','categorys','deliverycompanys'));
+        return view('admin.orders.edit', compact('order','zones','categorys','deliverycompanys'));
     }
 
 
@@ -193,5 +193,34 @@ class OrdersController extends Controller
     //for shopping cart
     public function getDataAjax(Request $request) {
         return response()->json(array('msg'=> $request->arraydata), 200);
+    }
+
+    function fetchData(Request $request){
+        $select = $request->get('select');
+        $value = $request->get('value');
+        $dependent = $request->get('dependent');
+        $data = DB::table('items')
+                ->where('category_id',$value)
+                ->get();
+
+            $output = '<option value="">Select '.ucfirst($dependent).'</option>';
+            foreach($data as $row)
+            {
+                $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
+            }
+            return $output;
+
+    }
+
+    function fetchPrice(Request $request){
+        $select = $request->get('select');
+        $value = $request->get('value');
+        $dependent = $request->get('dependent');
+        $data = DB::table('items')
+                ->where('id',$value)
+                ->first();
+
+            return $data->selling_price;
+
     }
 }
