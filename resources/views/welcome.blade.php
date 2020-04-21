@@ -114,7 +114,17 @@
                 @include('admin.sidebar')
 
                 <div class="col-md-9">
+                    <div class="card col-md-3">
+                        <div class="card-body">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+                            <br/>
+                            <h5 class="card-title text-info">Name</h5>
+                            Item Code <input class="form-control" type="text" name="item_code" id="item_code" readonly>
+                            Item Price <input class="form-control" type="text" name="price" id="price" readonly>
+                        </div>
 
+
+                      </div>
                 </div>
             </div>
         </div>
