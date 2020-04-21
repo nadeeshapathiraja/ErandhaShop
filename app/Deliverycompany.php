@@ -28,4 +28,8 @@ class Deliverycompany extends Model
     protected $fillable = ['name', 'zone', 'price', 'maxweight','additional','cod_less','cod_above'];
 
 
+    public function zone(){
+        return $this->belongsTo('App\Zone');
+    }
+
 }

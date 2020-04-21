@@ -151,6 +151,7 @@ class OrdersController extends Controller
         $item = DB::table('items')->where('id',$order->item_id)->first();
         $item_quantity=$item->quantity;
         $item_price=$item->selling_price;
+        $order_price=$order->price;
 
         if($item->quantity>=0){
             if($order->delivery_process=='Dispatch'){
@@ -168,13 +169,14 @@ class OrdersController extends Controller
                 DB::table('items')->update(['quantity' => ($item_quantity + $pickupQuantity)]);
             }
         }
-
-        // //get total price in order table
-        // $order_price = DB::table('orders')->where('id',$id)->first();
-        // $order_quantity=$item->quantity;
+        //Get zone price
+        $item__price = DB::table('items')->where('id',$order->item_id)->first();
+        $zone_price=$item->price;
 
         // $price=$item_price*$order_quantity;
-        // DB::table('orders')->update(['price' =>($item_price*$order_quantity)]);
+        DB::table('orders')->update(['price' =>($order_price+$zone_price)]);
+
+
 
 
         $order->update($requestData);

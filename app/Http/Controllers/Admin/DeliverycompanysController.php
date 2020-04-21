@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Deliverycompany;
+use App\Zone;
 use Illuminate\Http\Request;
 
 class DeliverycompanysController extends Controller
@@ -39,8 +40,8 @@ class DeliverycompanysController extends Controller
 
     public function create()
     {
-
-        return view('Admin.deliverycompanys.create');
+        $zones= Zone::all();
+        return view('Admin.deliverycompanys.create',compact('zones'));
     }
 
 

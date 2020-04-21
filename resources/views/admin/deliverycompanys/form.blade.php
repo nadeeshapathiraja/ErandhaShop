@@ -6,7 +6,15 @@
 
 <div class="form-group {{ $errors->has('zone') ? 'has-error' : ''}}">
     <label for="zone" class="control-label">{{ 'Zone Name' }}</label>
-    <input class="form-control" name="zone" type="text" id="zone" value="{{ isset($deliverycompany->zone) ? $deliverycompany->zone : ''}}" >
+    <select class="form-control" name="zone" id="zone" value="{{ isset($deliverycompany->zone) ? $deliverycompany->zone : ''}}">
+        @foreach ($zones as $zone)
+            @if($formMode === 'edit')
+                <option value="{{ $zone->id }}" {{ ( $zone->id == $city->zone_id) ? 'selected' : '' }}>{{ $zone->name }}</option>
+            @else
+                <option value="{{ $zone->id }}">{{ $zone->name }}</option>
+            @endif
+        @endforeach
+    </select>
     {!! $errors->first('zone', '<p class="help-block">:message</p>') !!}
 </div>
 
