@@ -30,7 +30,7 @@ function add_element_to_array() {
         unit_price: document.getElementById("unit_price").value,
         price: document.getElementById("quantity").value * document.getElementById("unit_price").value,
     }
-    dbarray.push(object)
+    dbarray.push(dbobject)
 }
 
 
@@ -88,6 +88,26 @@ function getMessage() {
     });
 }
 
+function addOrder() {
+
+    var deliveryProcess = document.getElementById("delivery_process").value;
+    console.log(deliveryProcess)
+    var _token = $('input[name="_token"]').val();
+    $.ajax({
+        type: 'POST',
+        url: '/addOrder',
+        data: {
+            deliveryProcess: deliveryProcess,
+            dataArray: dbarray,
+            _token: _token
+        },
+        success: function(result) {
+            alert("result");
+            console.log(result)
+        }
+    })
+}
+
 //select list dynamicaly change '/fetchData',
 $(document).ready(function() {
     $('.dynamic').change(function() {
@@ -134,4 +154,5 @@ $(document).ready(function() {
             })
         }
     })
+
 })

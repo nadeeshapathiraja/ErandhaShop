@@ -227,7 +227,7 @@
             <option value="Return">Return</option>
             <option value="Reject">Reject</option>
         @else
-            <option value="Pickup">Pickup</option>
+            <option value="Pickup" selected>Pickup</option>
             <option value="Onprocess">Onprocess</option>
             <option value="Dispatch">Dispatch</option>
             <option value="Deliverd">Deliverd</option>
@@ -242,7 +242,7 @@
 <br/>
 
 <div class="form-group">
-    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
+    <input class="btn btn-primary" onclick="addOrder()" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
     <input type="button" class="btn btn-danger" name="cancel" value="Cancel" onClick="window.location='../orders';" />
 </div>
 

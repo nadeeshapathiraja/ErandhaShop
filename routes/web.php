@@ -50,3 +50,4 @@ Route::resource('payments', 'Admin\\PaymentsController');
 Route::post('/getDataAjax','Admin\\OrdersController@getDataAjax');
 Route::post('/fetchData','Admin\\OrdersController@fetchData');
 Route::post('/fetchPrice','Admin\\OrdersController@fetchPrice');
+Route::post('/addOrder','Admin\\OrdersController@addOrder');

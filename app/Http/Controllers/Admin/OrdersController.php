@@ -27,7 +27,7 @@ class OrdersController extends Controller
     {
         $keyword = $request->get('search');
         $perPage = 10;
-        $citys =City::all();
+        $citys = City::all();
         if (!empty($keyword)) {
             $orders = Order::where('date', 'LIKE', "%$keyword%")
                 ->orWhere('month', 'LIKE', "%$keyword%")
@@ -48,72 +48,69 @@ class OrdersController extends Controller
             $orders = Order::latest()->paginate($perPage);
         }
 
-        return view('admin.orders.index', compact('orders','citys'));
+        return view('admin.orders.index', compact('orders', 'citys'));
     }
 
 
     public function create()
     {
         //$items =Item::all();
-        $zones =Zone::all();
-        $deliverycompanys= Deliverycompany::all();
+        $zones = Zone::all();
+        $deliverycompanys = Deliverycompany::all();
 
         //get category for page
         $categorys = DB::table('categorys')
-         ->groupBy('id')
-         ->get();
+            ->groupBy('id')
+            ->get();
 
-        return view('admin.orders.create',compact('zones','categorys','deliverycompanys'));
+        return view('admin.orders.create', compact('zones', 'categorys', 'deliverycompanys'));
     }
-
 
     public function store(Request $request)
     {
 
         $requestData = $request->all();
-        $order=Order::create($requestData);
-        $price=$order->price;
-        $first_payment=$order->first_payment;
-        $id=$order->id;
+        $order = Order::create($requestData);
+        $price = $order->price;
+        $first_payment = $order->first_payment;
+        $id = $order->id;
 
-        $item = DB::table('items')->where('id',$order->item_id)->first();
-        $item_quantity=$item->quantity;
-        $item_price=$item->selling_price;
+        $item = DB::table('items')->where('id', $order->item_id)->first();
+        $item_quantity = $item->quantity;
+        $item_price = $item->selling_price;
 
         //get total price in order table
-        $order_price = DB::table('orders')->where('id',$id)->first();
-        $order_quantity=$order->quantity;
+        $order_price = DB::table('orders')->where('id', $id)->first();
+        $order_quantity = $order->quantity;
 
 
         // DB::table('orders')->where('id',$id)->update(['price' =>($item_price*$order_quantity)]);
 
 
 
-        if($order->delivery_process=='Dispatch'){
+        if ($order->delivery_process == 'Dispatch') {
             $dispatchQuantity = $order->quantity;
-            $item = DB::table('items')->where('id',$order->item_id)->first();
-            $item_quantity=$item->quantity;
+            $item = DB::table('items')->where('id', $order->item_id)->first();
+            $item_quantity = $item->quantity;
             DB::table('items')->update(['quantity' => ($item_quantity - $dispatchQuantity)]);
-        }
-        else if($order->delivery_process=='Return'){
+        } else if ($order->delivery_process == 'Return') {
             $returnQuantity = $order->quantity;
-            $item = DB::table('items')->where('id',$order->item_id)->first();
-            $item_quantity=$item->quantity;
+            $item = DB::table('items')->where('id', $order->item_id)->first();
+            $item_quantity = $item->quantity;
             DB::table('items')->update(['quantity' => ($item_quantity + $returnQuantity)]);
-        }
-        else if($order->delivery_process=='Pickup'){
+        } else if ($order->delivery_process == 'Pickup') {
             $pickupQuantity = $order->quantity;
-            $item = DB::table('items')->where('id',$order->item_id)->first();
-            $item_quantity=$item->quantity;
+            $item = DB::table('items')->where('id', $order->item_id)->first();
+            $item_quantity = $item->quantity;
             DB::table('items')->update(['quantity' => ($item_quantity - $pickupQuantity)]);
         }
 
         $paymentType = new Paymenttype();
-        $paymentType->order_id=$order->id;
-        $paymentType->name=$order->name;
-        $paymentType->deposit_type=$order->deposit_type;
-        $paymentType->amount=$order->first_payment;
-        $paymentType->pay_to_future=(($item_price*$order_quantity)-$first_payment);
+        $paymentType->order_id = $order->id;
+        $paymentType->name = $order->name;
+        $paymentType->deposit_type = $order->deposit_type;
+        $paymentType->amount = $order->first_payment;
+        $paymentType->pay_to_future = (($item_price * $order_quantity) - $first_payment);
 
         $paymentType->save();
 
@@ -126,8 +123,8 @@ class OrdersController extends Controller
     public function show($id)
     {
         $order = Order::findOrFail($id);
-        $items =Item::all();
-        return view('admin.orders.show', compact('order','items'));
+        $items = Item::all();
+        return view('admin.orders.show', compact('order', 'items'));
     }
 
 
@@ -135,10 +132,10 @@ class OrdersController extends Controller
     {
         $order = Order::findOrFail($id);
         //$items =Item::all();
-        $zones =Zone::all();
-        $categorys =Category::all();
-        $deliverycompanys= Deliverycompany::all();
-        return view('admin.orders.edit', compact('order','zones','categorys','deliverycompanys'));
+        $zones = Zone::all();
+        $categorys = Category::all();
+        $deliverycompanys = Deliverycompany::all();
+        return view('admin.orders.edit', compact('order', 'zones', 'categorys', 'deliverycompanys'));
     }
 
 
@@ -148,33 +145,31 @@ class OrdersController extends Controller
         $requestData = $request->all();
 
         $order = Order::findOrFail($id);
-        $item = DB::table('items')->where('id',$order->item_id)->first();
-        $item_quantity=$item->quantity;
-        $item_price=$item->selling_price;
-        $order_price=$order->price;
+        $item = DB::table('items')->where('id', $order->item_id)->first();
+        $item_quantity = $item->quantity;
+        $item_price = $item->selling_price;
+        $order_price = $order->price;
 
-        if($item->quantity>=0){
-            if($order->delivery_process=='Dispatch'){
+        if ($item->quantity >= 0) {
+            if ($order->delivery_process == 'Dispatch') {
                 $dispatchQuantity = $order->quantity;
                 DB::table('items')->update(['quantity' => ($item_quantity - $dispatchQuantity)]);
-            }
-            else if($order->delivery_process=='Return'){
+            } else if ($order->delivery_process == 'Return') {
                 $returnQuantity = $order->quantity;
-                $item = DB::table('items')->where('id',$order->item_id)->first();
+                $item = DB::table('items')->where('id', $order->item_id)->first();
                 DB::table('items')->update(['quantity' => ($item_quantity - $returnQuantity)]);
-            }
-            else if($order->delivery_process=='Pickup'){
+            } else if ($order->delivery_process == 'Pickup') {
                 $pickupQuantity = $order->quantity;
-                $item = DB::table('items')->where('id',$order->item_id)->first();
+                $item = DB::table('items')->where('id', $order->item_id)->first();
                 DB::table('items')->update(['quantity' => ($item_quantity + $pickupQuantity)]);
             }
         }
         //Get zone price
-        $item__price = DB::table('items')->where('id',$order->item_id)->first();
-        $zone_price=$item->price;
+        $item__price = DB::table('items')->where('id', $order->item_id)->first();
+        $zone_price = $item->price;
 
         // $price=$item_price*$order_quantity;
-        DB::table('orders')->update(['price' =>($order_price+$zone_price)]);
+        DB::table('orders')->update(['price' => ($order_price + $zone_price)]);
 
 
 
@@ -193,36 +188,88 @@ class OrdersController extends Controller
     }
 
     //for shopping cart
-    public function getDataAjax(Request $request) {
-        return response()->json(array('msg'=> $request->arraydata), 200);
+    public function getDataAjax(Request $request)
+    {
+        return response()->json(array('msg' => $request->arraydata), 200);
     }
 
-    function fetchData(Request $request){
+    function fetchData(Request $request)
+    {
         $select = $request->get('select');
         $value = $request->get('value');
         $dependent = $request->get('dependent');
         $data = DB::table('items')
-                ->where('category_id',$value)
-                ->get();
+            ->where('category_id', $value)
+            ->get();
 
-            $output = '<option value="">Select '.ucfirst($dependent).'</option>';
-            foreach($data as $row)
-            {
-                $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
+        $output = '<option value="">Select ' . ucfirst($dependent) . '</option>';
+        foreach ($data as $row) {
+            $output .= '<option value="' . $row->id . '">' . $row->name . '</option>';
+        }
+        return $output;
+    }
+
+    function fetchPrice(Request $request)
+    {
+        $select = $request->get('select');
+        $value = $request->get('value');
+        $dependent = $request->get('dependent');
+        $data = DB::table('items')
+            ->where('id', $value)
+            ->first();
+
+        return $data->selling_price;
+    }
+
+    public function addOrder(Request $request)
+    {
+        $itemArray = $request->get('dataArray');
+        $deliveryProcess = $request->get('deliveryProcess');
+
+        $order = new Order();
+        $order->delivery_process = $deliveryProcess;
+        $order->telephone = json_encode($itemArray);
+        $order->save();
+        // $price = $order->price;
+        // $first_payment = $order->first_payment;
+        // $id = $order->id;
+
+
+        foreach ($itemArray as $itemS) {
+            // $itemSelect = DB::table('items')->where('id', $item->item_id)->first();
+            // $item_quantity = $itemSelect->quantity;
+            // $item_price = $itemSelect->selling_price;
+            // $order_quantity = $itemS->quantity;
+            if ($order->delivery_process == 'Dispatch') {
+                $dispatchQuantity = $itemS['quantity'];
+                $item = DB::table('items')->where('id', $itemS['item_id'])->first();
+                $item_quantity = $item->quantity;
+                DB::table('items')->where('id', $itemS['item_id'])->update(['quantity' => ($item_quantity - $dispatchQuantity)]);
+            } else if ($order->delivery_process == 'Return') {
+                $returnQuantity = $itemS['quantity'];
+                $item = DB::table('items')->where('id', $itemS['item_id'])->first();
+                $item_quantity = $item->quantity;
+                DB::table('items')->where('id', $itemS['item_id'])->update(['quantity' => ($item_quantity + $returnQuantity)]);
+            } else if ($order->delivery_process == 'Pickup') {
+                $pickupQuantity = $itemS['quantity'];
+                $item = DB::table('items')->where('id', $itemS['item_id'])->first();
+                $item_quantity = $item->quantity;
+                DB::table('items')->where('id', $itemS['item_id'])->update(['quantity' => ($item_quantity - $pickupQuantity)]);
             }
-            return $output;
+        }
 
-    }
 
-    function fetchPrice(Request $request){
-        $select = $request->get('select');
-        $value = $request->get('value');
-        $dependent = $request->get('dependent');
-        $data = DB::table('items')
-                ->where('id',$value)
-                ->first();
+        // $paymentType = new Paymenttype();
+        // $paymentType->order_id = $order->id;
+        // $paymentType->name = $order->name;
+        // $paymentType->deposit_type = $order->deposit_type;
+        // $paymentType->amount = $order->first_payment;
+        // $paymentType->pay_to_future = (($item_price * $order_quantity) - $first_payment);
 
-            return $data->selling_price;
+        // $paymentType->save();
 
+
+        return "done";
+        // return redirect('orders')->with('flash_message', 'Order added!');
     }
 }
