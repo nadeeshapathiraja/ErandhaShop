@@ -1,6 +1,6 @@
 <div class="form-group {{ $errors->has('date') ? 'has-error' : ''}}">
     <label for="date" class="control-label">{{ 'Order Date' }}</label>
-    <input class="form-control" name="date" type="date" id="today" min="" value="{{ isset($order->date) ? $order->date : ''}}" >
+    <input class="form-control" name="date" type="date" id="date" min="" value="{{ isset($order->date) ? $order->date : ''}}" >
     {!! $errors->first('date', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('month') ? 'has-error' : ''}}">
@@ -33,6 +33,17 @@
         @endforeach
     </select>
     {!! $errors->first('deliverycompany_id', '<p class="help-block">:message</p>') !!}
+</div>
+<div class="form-group {{ $errors->has('zone_id') ? 'has-error' : ''}}">
+    <label for="city_id" class="control-label">{{ 'Zone Name' }}</label>
+    <select class="form-control" name="zone_id" id="zone_id" value="{{ isset($order->zone_id) ? $order->zone_id : ''}}">
+        @foreach ($zones as $zone)
+
+                <option value="{{ $zone->id }}">{{ $zone->name }}</option>
+
+        @endforeach
+    </select>
+    {!! $errors->first('city_id', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('shipment_code') ? 'has-error' : ''}}">
     <label for="shipment_code" class="control-label">{{ 'Deliverycompany Shipment Code' }}</label>
@@ -170,19 +181,7 @@
     <input class="form-control" name="Location_address" type="text" id="Location_address" value="{{ isset($order->Location_address) ? $order->Location_address : ''}}" >
     {!! $errors->first('Location_address', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('zone_id') ? 'has-error' : ''}}">
-    <label for="city_id" class="control-label">{{ 'Zone Name' }}</label>
-    <select class="form-control" name="zone_id" id="zone_id" value="{{ isset($order->zone_id) ? $order->zone_id : ''}}">
-        @foreach ($zones as $zone)
-            @if($formMode === 'edit')
-                <option value="{{ $zone->id }}" {{ ( $zone->id == $item->zone_id) ? 'selected' : '' }}>{{ $zone->name }}</option>
-            @else
-                <option value="{{ $zone->id }}">{{ $zone->name }}</option>
-            @endif
-        @endforeach
-    </select>
-    {!! $errors->first('city_id', '<p class="help-block">:message</p>') !!}
-</div>
+
 <div class="form-group {{ $errors->has('telephone') ? 'has-error' : ''}}">
     <label for="telephone" class="control-label">{{ 'Telephone' }}</label>
     <input class="form-control" name="telephone" type="text" id="telephone" value="{{ isset($order->telephone) ? $order->telephone : ''}}" >
@@ -208,7 +207,7 @@
     </div>
     <div class="col-md-6">
         <div class="form-group {{ $errors->has('first_payment') ? 'has-error' : ''}}">
-            <label for="first_payment" class="control-label">{{ 'First Payment' }}</label>
+            <label for="first_payment" class="control-label">{{ 'Advance Payment' }}</label>
             <input class="form-control" name="first_payment" type="number" id="first_payment" value="{{ isset($order->first_payment) ? $order->first_payment : ''}}" >
             {!! $errors->first('first_payment', '<p class="help-block">:message</p>') !!}
         </div>

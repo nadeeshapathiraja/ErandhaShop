@@ -7,6 +7,7 @@
 
             <div class="col-md-9">
                 <div class="card">
+                    
                     <div class="card-header">Order {{ $order->id }}</div>
                     <div class="card-body">
                         <div class="row">
@@ -58,18 +59,18 @@
                                         <th> Delivery Company </th>
                                         <td> {{ $order->deliverycompany_id }} </td>
                                     </tr>
-                                    <tr>
-                                        <th> Item Names </th>
-                                        <td> {{ $order->item->name }} </td>
-                                    </tr>
+
                                     <tr>
                                         <th> Item Quantity </th>
                                         <td> {{ $order->quantity }} </td>
                                     </tr>
                                     <tr>
-                                        <th> Zone Name </th>
-                                        <td> {{ $order->zone->name }} </td>
+                                        <th> Items </th>
+                                        @foreach ($cartItems as $item)
+                                            <p>{{ $item->item_name }} --> {{ $item->quantity }}</p>
+                                        @endforeach
                                     </tr>
+
                                     <tr>
                                         <th> Delivery Address </th>
                                         <td> {{ $order->Location_address }} </td>

@@ -27,7 +27,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Third Party</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ url('deliverycompanys') }}">Delivery Company Log</a>
+                    <a class="dropdown-item" href="{{ url('deliverycompanys') }}">Delivery Company</a>
                     <a class="dropdown-item" href="{{ url('supplyers') }}">Supplyer Log</a>
                     <a class="dropdown-item" href="{{ url('clients') }}">Client Log</a>
                 </div>

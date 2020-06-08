@@ -123,6 +123,14 @@ class itemsController extends Controller
         $item = item::findOrFail($id);
 
         return view('Admin.items.show', compact('item'));
+
+    }
+    public function showcart($id)
+    {
+        $item = item::findOrFail($id);
+
+        return view('/', compact('item'));
+
     }
 
 

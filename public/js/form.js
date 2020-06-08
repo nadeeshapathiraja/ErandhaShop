@@ -56,7 +56,7 @@ function display_array() {
         quantity.innerHTML = array[y].quantity;
         price.innerHTML = array[y].price;
         action.innerHTML = `<button onclick="remove_from__array(${y});">Remove</button>`;
-        totalPrice += array[y].price
+        totalPrice += parseInt(array[y].price)
     }
     document.getElementById("price").value = totalPrice;
 }
@@ -91,25 +91,70 @@ function getMessage() {
 function addOrder() {
 
     var deliveryProcess = document.getElementById("delivery_process").value;
+    var zone_id = document.getElementById("zone_id").value;
+    var date = document.getElementById("date").value;
+    var month = document.getElementById("month").value;
+    var shipment_code = document.getElementById("shipment_code").value;
+    var name = document.getElementById("name").value;
+    var order_source = document.getElementById("order_source").value;
+    var Location_address = document.getElementById("Location_address").value;
+    var telephone = document.getElementById("telephone").value;
+    var notes = document.getElementById("notes").value;
+    var deposit_type = document.getElementById("deposit_type").value;
+    var first_payment = document.getElementById("first_payment").value;
+    var deliverycompany_id = document.getElementById("deliverycompany_id").value;
+
     console.log(deliveryProcess)
     var _token = $('input[name="_token"]').val();
     $.ajax({
         type: 'POST',
         url: '/addOrder',
         data: {
+            date: date,
+            month: month,
+            shipment_code: shipment_code,
+            name: name,
+            order_source: order_source,
+            Location_address: Location_address,
             deliveryProcess: deliveryProcess,
+            telephone: telephone,
+            notes: notes,
+            deposit_type: deposit_type,
+            first_payment: first_payment,
+            deliverycompany_id: deliverycompany_id,
+            zone_id: zone_id,
             dataArray: dbarray,
             _token: _token
         },
-        success: function(result) {
-            alert("result");
-            console.log(result)
+        success: function(data) {
+            location.href = "http://localhost:8000/orders"
         }
     })
 }
 
 //select list dynamicaly change '/fetchData',
 $(document).ready(function() {
+    var str = window.location.pathname;
+    var editTrue = str.includes('edit');
+    var orderTrue = str.includes('order');
+    if (editTrue && orderTrue) {
+        var _token = $('input[name="_token"]').val();
+        var id = str.match(/\d+/)[0]
+        $.ajax({
+            type: 'POST',
+            url: '/fetchCartItems',
+            data: {
+                id: id,
+                _token: _token
+            },
+            success: function(result) {
+                dbarray = result[1]
+                array = result[0]
+                display_array()
+            }
+        })
+    }
+
     $('.dynamic').change(function() {
         if ($(this).val() != '') {
             var select = $(this).attr("id");

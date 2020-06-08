@@ -22,10 +22,7 @@ class CreateOrdersTable extends Migration
             $table->string('shipment_code')->nullable();
             $table->string('name')->nullable();
             $table->string('order_source')->nullable();
-            $table->integer('item_id')->nullable()->unsigned();
-            $table->integer('category_id')->nullable()->unsigned();
-            $table->integer('quantity')->nullable();
-            $table->double('price')->nullable();
+            $table->string('cart_items')->nullable();
             $table->string('Location_address')->nullable();
             $table->integer('zone_id')->nullable()->unsigned();
             $table->string('telephone')->nullable();
@@ -33,10 +30,8 @@ class CreateOrdersTable extends Migration
             $table->string('first_payment')->nullable();
             $table->string('deposit_type')->nullable();
             $table->string('delivery_process')->nullable();
-            $table->foreign('item_id')->references('id')->on('items')->sign;
             $table->foreign('zone_id')->references('id')->on('zones')->sign;
             $table->foreign('deliverycompany_id')->references('id')->on('deliverycompanys')->sign;
-            $table->foreign('category_id')->references('id')->on('categorys')->sign;
             });
     }
 

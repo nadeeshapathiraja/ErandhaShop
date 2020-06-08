@@ -14,6 +14,7 @@ use App\Zone;
 use Faker\Provider\ar_SA\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class OrdersController extends Controller
 {
@@ -66,65 +67,80 @@ class OrdersController extends Controller
         return view('admin.orders.create', compact('zones', 'categorys', 'deliverycompanys'));
     }
 
-    public function store(Request $request)
-    {
-
-        $requestData = $request->all();
-        $order = Order::create($requestData);
-        $price = $order->price;
-        $first_payment = $order->first_payment;
-        $id = $order->id;
-
-        $item = DB::table('items')->where('id', $order->item_id)->first();
-        $item_quantity = $item->quantity;
-        $item_price = $item->selling_price;
-
-        //get total price in order table
-        $order_price = DB::table('orders')->where('id', $id)->first();
-        $order_quantity = $order->quantity;
+    // public function store(Request $request)
+    // {
 
 
-        // DB::table('orders')->where('id',$id)->update(['price' =>($item_price*$order_quantity)]);
+    //     $requestData = $request->all();
+    //     $order = Order::create($requestData);
+    //     $price = $order->price;
+    //     $first_payment = $order->first_payment;
+    //     $id = $order->id;
+
+    //     $item = DB::table('items')->where('id', $order->item_id)->first();
+    //     $item_quantity = $item->quantity;
+    //     $item_price = $item->selling_price;
+
+    //     //get total price in order table
+    //     $order_price = DB::table('orders')->where('id', $id)->first();
+    //     $order_quantity = $order->quantity;
 
 
-
-        if ($order->delivery_process == 'Dispatch') {
-            $dispatchQuantity = $order->quantity;
-            $item = DB::table('items')->where('id', $order->item_id)->first();
-            $item_quantity = $item->quantity;
-            DB::table('items')->update(['quantity' => ($item_quantity - $dispatchQuantity)]);
-        } else if ($order->delivery_process == 'Return') {
-            $returnQuantity = $order->quantity;
-            $item = DB::table('items')->where('id', $order->item_id)->first();
-            $item_quantity = $item->quantity;
-            DB::table('items')->update(['quantity' => ($item_quantity + $returnQuantity)]);
-        } else if ($order->delivery_process == 'Pickup') {
-            $pickupQuantity = $order->quantity;
-            $item = DB::table('items')->where('id', $order->item_id)->first();
-            $item_quantity = $item->quantity;
-            DB::table('items')->update(['quantity' => ($item_quantity - $pickupQuantity)]);
-        }
-
-        $paymentType = new Paymenttype();
-        $paymentType->order_id = $order->id;
-        $paymentType->name = $order->name;
-        $paymentType->deposit_type = $order->deposit_type;
-        $paymentType->amount = $order->first_payment;
-        $paymentType->pay_to_future = (($item_price * $order_quantity) - $first_payment);
-
-        $paymentType->save();
+    //     if ($order->delivery_process == 'Dispatch') {
+    //         $dispatchQuantity = $order->quantity;
+    //         $item = DB::table('items')->where('id', $order->item_id)->first();
+    //         $item_quantity = $item->quantity;
+    //         DB::table('items')->update(['quantity' => ($item_quantity - $dispatchQuantity)]);
+    //     } else if ($order->delivery_process == 'Return') {
+    //         $returnQuantity = $order->quantity;
+    //         $item = DB::table('items')->where('id', $order->item_id)->first();
+    //         $item_quantity = $item->quantity;
+    //         DB::table('items')->update(['quantity' => ($item_quantity + $returnQuantity)]);
+    //     } else if ($order->delivery_process == 'Pickup') {
+    //         $pickupQuantity = $order->quantity;
+    //         $item = DB::table('items')->where('id', $order->item_id)->first();
+    //         $item_quantity = $item->quantity;
+    //         DB::table('items')->update(['quantity' => ($item_quantity - $pickupQuantity)]);
+    //     }
 
 
 
-        return redirect('orders')->with('flash_message', 'Order added!');
-    }
+    //     $paymentType = new Paymenttype();
+    //     $paymentType->order_id = $order->id;
+    //     $paymentType->name = $order->name;
+    //     $paymentType->deposit_type = $order->deposit_type;
+    //     $paymentType->amount = $order->first_payment;
+    //     $paymentType->pay_to_future = (($item_price * $order_quantity) - $first_payment);
+
+    //     $paymentType->save();
+    //     return redirect('orders');
+    // }
 
 
     public function show($id)
     {
         $order = Order::findOrFail($id);
+        $cartItems =  json_decode($order->cart_items);
+        foreach ($cartItems as $item) {
+            $items = Item::findOrFail($item->item_id);
+            $item->{"item_name"} = $items->name;
+        }
         $items = Item::all();
-        return view('admin.orders.show', compact('order', 'items'));
+        return view('admin.orders.show', compact('order', 'items','cartItems'));
+    }
+
+    public function fetchCartItems(Request $request){
+        $order = Order::findOrFail($request->get('id'));
+        $cartItems =  json_decode($order->cart_items);
+        $cartShow =  json_decode($order->cart_items);
+        foreach ($cartShow as $item) {
+            $items = Item::findOrFail($item->item_id);
+            $category = Category::findOrFail($item->category_id);
+            $item->{"item_id"} = $items->name;
+            $item->{"category_id"} = $category->name;
+        }
+        $data = array($cartShow,$cartItems);
+        return $data;
     }
 
 
@@ -223,23 +239,55 @@ class OrdersController extends Controller
 
     public function addOrder(Request $request)
     {
+
         $itemArray = $request->get('dataArray');
+
         $deliveryProcess = $request->get('deliveryProcess');
+        $date = $request->get('date');
+        $month = $request->get('month');
+        $shipment_code = $request->get('shipment_code');
+        $name = $request->get('name');
+        $order_source = $request->get('order_source');
+        $Location_address = $request->get('Location_address');
+        $telephone = $request->get('telephone');
+        $notes = $request->get('notes');
+        $deposit_type = $request->get('deposit_type');
+        $first_payment = $request->get('first_payment');
+        $deliverycompany_id = intval($request->get('deliverycompany_id'));
+        $zone_id = intval($request->get('zone_id'));
+
 
         $order = new Order();
         $order->delivery_process = $deliveryProcess;
-        $order->telephone = json_encode($itemArray);
-        $order->save();
-        // $price = $order->price;
-        // $first_payment = $order->first_payment;
-        // $id = $order->id;
+        $order->date = $date;
+        $order->month = $month;
+        $order->shipment_code = $shipment_code;
+        $order->name = $name;
+        $order->order_source = $order_source;
+        $order->Location_address = $Location_address;
+        $order->telephone = $telephone;
+        $order->notes = $notes;
+        $order->deposit_type = $deposit_type;
+        $order->first_payment = $first_payment;
+        $order->deliverycompany_id = $deliverycompany_id;
+        $order->zone_id = $zone_id;
 
+        //Save cart item encorded array
+        $order->cart_items = json_encode($itemArray);
+        //save all data to db
+        $order->save();
+
+
+        $ship = DB::table('citys')
+        ->where('deliverycompany_id', $deliverycompany_id)
+        ->where('zone_id', $zone_id)
+        ->get();
+
+        //get zone price for one variable can use future
+        $shipPrice = $ship[0]->price;
 
         foreach ($itemArray as $itemS) {
-            // $itemSelect = DB::table('items')->where('id', $item->item_id)->first();
-            // $item_quantity = $itemSelect->quantity;
-            // $item_price = $itemSelect->selling_price;
-            // $order_quantity = $itemS->quantity;
+
             if ($order->delivery_process == 'Dispatch') {
                 $dispatchQuantity = $itemS['quantity'];
                 $item = DB::table('items')->where('id', $itemS['item_id'])->first();
@@ -268,8 +316,6 @@ class OrdersController extends Controller
 
         // $paymentType->save();
 
-
-        return "done";
-        // return redirect('orders')->with('flash_message', 'Order added!');
+        Session::put('flash_message', "Order Added Sucessfull");
     }
 }

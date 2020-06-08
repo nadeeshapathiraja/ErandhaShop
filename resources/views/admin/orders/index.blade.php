@@ -6,6 +6,13 @@
             @include('admin.sidebar')
 
             <div class="col-md-9">
+                @if(Session::has('flash_message'))
+                    <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong> {{ Session::get('flash_message') }} </strong>
+                    </div>
+                    {{ Session::forget('flash_message') }}
+                @endif
                 <div class="card">
                     <div class="card-header">Orders</div>
                     <div class="card-body">

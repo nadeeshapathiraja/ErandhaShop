@@ -18,17 +18,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('welcome', 'Admin\\itemsController');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
 
 
 //for views
@@ -51,3 +53,4 @@ Route::post('/getDataAjax','Admin\\OrdersController@getDataAjax');
 Route::post('/fetchData','Admin\\OrdersController@fetchData');
 Route::post('/fetchPrice','Admin\\OrdersController@fetchPrice');
 Route::post('/addOrder','Admin\\OrdersController@addOrder');
+Route::post('/fetchCartItems','Admin\\OrdersController@fetchCartItems');
