@@ -35,7 +35,7 @@
     {!! $errors->first('deliverycompany_id', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('zone_id') ? 'has-error' : ''}}">
-    <label for="city_id" class="control-label">{{ 'Zone Name' }}</label>
+    <label for="city_id" class="control-label">{{ 'Area Name' }}</label>
     <select class="form-control" name="zone_id" id="zone_id" value="{{ isset($order->zone_id) ? $order->zone_id : ''}}">
         @foreach ($zones as $zone)
 

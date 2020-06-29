@@ -126,10 +126,11 @@ class OrdersController extends Controller
             $item->{"item_name"} = $items->name;
         }
         $items = Item::all();
-        return view('admin.orders.show', compact('order', 'items','cartItems'));
+        return view('admin.orders.show', compact('order', 'items', 'cartItems'));
     }
 
-    public function fetchCartItems(Request $request){
+    public function fetchCartItems(Request $request)
+    {
         $order = Order::findOrFail($request->get('id'));
         $cartItems =  json_decode($order->cart_items);
         $cartShow =  json_decode($order->cart_items);
@@ -139,7 +140,7 @@ class OrdersController extends Controller
             $item->{"item_id"} = $items->name;
             $item->{"category_id"} = $category->name;
         }
-        $data = array($cartShow,$cartItems);
+        $data = array($cartShow, $cartItems);
         return $data;
     }
 
@@ -279,9 +280,9 @@ class OrdersController extends Controller
 
 
         $ship = DB::table('citys')
-        ->where('deliverycompany_id', $deliverycompany_id)
-        ->where('zone_id', $zone_id)
-        ->get();
+            ->where('deliverycompany_id', $deliverycompany_id)
+            ->where('zone_id', $zone_id)
+            ->get();
 
         //get zone price for one variable can use future
         $shipPrice = $ship[0]->price;
@@ -317,5 +318,35 @@ class OrdersController extends Controller
         // $paymentType->save();
 
         Session::put('flash_message', "Order Added Sucessfull");
+    }
+
+    public function printSelect()
+    {
+        $perPage = 10;
+        $orders = Order::latest()->paginate($perPage);
+        return view('admin.orders.orderselect', compact('orders'));
+    }
+
+    public function printAll()
+    {
+        $perPage = 10;
+        $orders = Order::latest()->paginate($perPage);
+        return view('admin.orders.print', compact('orders'));
+    }
+
+    public function selectedItems(Request $request)
+    {
+        $selectedArray =  $request->selectdata;
+        $perPage = 10;
+        $orders = array();
+
+        if( sizeof($selectedArray) > 0 ){
+            for($i=0; $i< sizeof($selectedArray); $i++){
+                $order = Order::findOrFail($selectedArray[$i]);
+                array_push($orders,$order);
+            }
+        }
+
+        return view('admin.orders.print', compact('orders'));
     }
 }

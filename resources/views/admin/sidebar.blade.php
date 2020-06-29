@@ -48,8 +48,15 @@
                 </div>
             </li><hr>
 
+            <li role="nav-item">
+                <a class="nav-link" href="{{ url('printSelect') }}">
+                    Print Records
+                </a>
+            </li><hr>
+
         </ul>
 
     </nav>
 
 </div>
+

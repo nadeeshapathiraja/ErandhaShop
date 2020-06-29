@@ -7,7 +7,7 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    
+
                     <div class="card-header">Order {{ $order->id }}</div>
                     <div class="card-body">
                         <div class="row">
@@ -59,28 +59,42 @@
                                         <th> Delivery Company </th>
                                         <td> {{ $order->deliverycompany_id }} </td>
                                     </tr>
-
-                                    <tr>
-                                        <th> Item Quantity </th>
-                                        <td> {{ $order->quantity }} </td>
-                                    </tr>
-                                    <tr>
-                                        <th> Items </th>
-                                        @foreach ($cartItems as $item)
-                                            <p>{{ $item->item_name }} --> {{ $item->quantity }}</p>
-                                        @endforeach
-                                    </tr>
-
                                     <tr>
                                         <th> Delivery Address </th>
                                         <td> {{ $order->Location_address }} </td>
                                     </tr>
                                     <tr>
-                                        <th> Price </th>
-                                        <td> {{ $order->price }} </td>
+                                        <table class="table table-bordered">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th>Item Name</th>
+                                                    <th>Item Quantity</th>
+                                                </tr>
+                                            </thead>
+
+                                            @foreach ($cartItems as $item)
+                                                    <tr>
+                                                        <td>{{ $item->item_name }}</td>
+                                                        <td>{{ $item->quantity }}</td>
+                                                    </tr>
+                                            @endforeach
+                                        </table>
+                                    </tr>
+                                    <tr>
+                                        <th>Total Price </th>
+                                        {{--  <td> {{ $order->price }} </td>  --}}
+                                        <?php $total = 0;
+                                            foreach($cartItems as $item){
+                                                $total +=  $item->price;
+                                            }
+                                        ?>
+                                        <p style="font-weight: bold;">Rs. {{ $total }} .00</p>
                                     </tr>
                                 </tbody>
                             </table>
+                            <tr>
+                                
+                            </tr>
                         </div>
 
                     </div>

@@ -87,6 +87,13 @@ function getMessage() {
         }
     });
 }
+//Select all
+function toggle(source) {
+    checkboxes = document.getElementsByName('selectdata');
+    for (var i = 0, n = checkboxes.length; i < n; i++) {
+        checkboxes[i].checked = source.checked;
+    }
+}
 
 function addOrder() {
 
@@ -176,6 +183,34 @@ $(document).ready(function() {
             })
         }
     })
+
+    //select all check boxes
+    $(document).ready(function() {
+        // Check or Uncheck All checkboxes
+        $("#checkall").change(function() {
+            var checked = $(this).is(':checked');
+            if (checked) {
+                $(".checkbox").each(function() {
+                    $(this).prop("checked", true);
+                });
+            } else {
+                $(".checkbox").each(function() {
+                    $(this).prop("checked", false);
+                });
+            }
+        });
+
+        // Changing state of CheckAll checkbox
+        $(".checkbox").click(function() {
+
+            if ($(".checkbox").length == $(".checkbox:checked").length) {
+                $("#checkall").prop("checked", true);
+            } else {
+                $("#checkall").removeAttr("checked");
+            }
+
+        });
+    });
 
     //selsect unit price for selected item
     $('.abcd').change(function() {

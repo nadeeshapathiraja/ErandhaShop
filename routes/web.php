@@ -54,3 +54,8 @@ Route::post('/fetchData','Admin\\OrdersController@fetchData');
 Route::post('/fetchPrice','Admin\\OrdersController@fetchPrice');
 Route::post('/addOrder','Admin\\OrdersController@addOrder');
 Route::post('/fetchCartItems','Admin\\OrdersController@fetchCartItems');
+
+Route::get('/printSelect','Admin\\OrdersController@printSelect');
+
+Route::get('/printAll','Admin\\OrdersController@printAll');
+Route::post('/selected','Admin\\OrdersController@selectedItems');

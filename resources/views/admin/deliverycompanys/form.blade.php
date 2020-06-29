@@ -5,7 +5,7 @@
 </div>
 
 <div class="form-group {{ $errors->has('zone') ? 'has-error' : ''}}">
-    <label for="zone" class="control-label">{{ 'Zone Name' }}</label>
+    <label for="zone" class="control-label">{{ 'Area Name' }}</label>
     <select class="form-control" name="zone" id="zone" value="{{ isset($deliverycompany->zone) ? $deliverycompany->zone : ''}}">
         @foreach ($zones as $zone)
             @if($formMode === 'edit')
