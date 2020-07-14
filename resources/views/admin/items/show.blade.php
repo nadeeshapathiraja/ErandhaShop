@@ -20,7 +20,7 @@
                         </form>
                         <br/>
                         <br/>
-
+                        <img src="{{asset('images/items/'.$item->id)}}"alt="Image"/>
                         <div class="table-responsive">
                             <table class="table">
                                 <tbody>

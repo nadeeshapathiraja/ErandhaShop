@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        //register your command
+        'App\Console\Commands\cornEmail'
     ];
 
     /**

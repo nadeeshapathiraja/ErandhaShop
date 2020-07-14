@@ -46,7 +46,7 @@
     {!! $errors->first('city_id', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('shipment_code') ? 'has-error' : ''}}">
-    <label for="shipment_code" class="control-label">{{ 'Deliverycompany Shipment Code' }}</label>
+    <label for="shipment_code" class="control-label">{{ 'Tracking Code' }}</label>
     <input class="form-control" name="shipment_code" type="text" id="shipment_code" value="{{ isset($order->shipment_code) ? $order->shipment_code : ''}}" >
     {!! $errors->first('shipment_code', '<p class="help-block">:message</p>') !!}
 </div>
@@ -241,8 +241,13 @@
 <br/>
 
 <div class="form-group">
-    <input class="btn btn-primary" onclick="addOrder()" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
-    <input type="button" class="btn btn-danger" name="cancel" value="Cancel" onClick="window.location='../orders';" />
+    @if($formMode === 'edit')
+        <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
+        <input type="button" class="btn btn-danger" name="cancel" value="Cancel" onClick="window.location='../orders';" />
+    @else
+        <input class="btn btn-primary" onclick='addOrder()' value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
+        <input type="button" class="btn btn-danger" name="cancel" value="Cancel" onClick="window.location='../orders';" />
+    @endif
 </div>
 
 <br/>

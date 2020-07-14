@@ -20,14 +20,14 @@
 </div>
 
 <div class="form-group {{ $errors->has('product_code') ? 'has-error' : ''}}">
-    <label for="product_code" class="control-label">{{ 'Product Code' }}</label>
+    <label for="product_code" class="control-label">{{ 'Batch Code' }}</label>
     <input class="form-control" name="product_code" type="text" id="product_code" value="{{ isset($item->product_code) ? $item->product_code : ''}}" >
     {!! $errors->first('product_code', '<p class="help-block">:message</p>') !!}
 </div>
 
 <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
     <label for="name" class="control-label">{{ 'Product Name' }}</label>
-    <input class="form-control" name="name" type="text" id="name" value="{{ isset($item->name) ? $item->name : ''}}" >
+    <textarea rows="4" cols="30" class="form-control" name="name" type="text" id="name" value="{{ isset($item->name) ? $item->name : ''}}"></textarea>
     {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
 </div>
 

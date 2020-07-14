@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', 'Admin\\itemsController@cartItems');
 Route::resource('welcome', 'Admin\\itemsController');
 
 Auth::routes();
@@ -46,16 +46,21 @@ Route::resource('items', 'Admin\\itemsController');
 Route::resource('clients', 'Admin\\ClientsController');
 Route::resource('payments', 'Admin\\PaymentsController');
 Route::resource('payments', 'Admin\\PaymentsController');
+Route::resource('supplyer-cost', 'Admin\\SupplyerCostController');
 
 
 //Ajax request for shopping cart
-Route::post('/getDataAjax','Admin\\OrdersController@getDataAjax');
-Route::post('/fetchData','Admin\\OrdersController@fetchData');
-Route::post('/fetchPrice','Admin\\OrdersController@fetchPrice');
-Route::post('/addOrder','Admin\\OrdersController@addOrder');
-Route::post('/fetchCartItems','Admin\\OrdersController@fetchCartItems');
+Route::post('/getDataAjax', 'Admin\\OrdersController@getDataAjax');
+Route::post('/fetchData', 'Admin\\OrdersController@fetchData');
+Route::post('/fetchPrice', 'Admin\\OrdersController@fetchPrice');
+Route::post('/addOrder', 'Admin\\OrdersController@addOrder');
+Route::post('/fetchCartItems', 'Admin\\OrdersController@fetchCartItems');
 
-Route::get('/printSelect','Admin\\OrdersController@printSelect');
+// send data to print page
+Route::get('/printSelect', 'Admin\\OrdersController@printSelect');
 
-Route::get('/printAll','Admin\\OrdersController@printAll');
-Route::post('/selected','Admin\\OrdersController@selectedItems');
+//send data to dashboard
+Route::get('/cartItems', 'Admin\\OrdersController@cartItems');
+
+Route::get('/printAll', 'Admin\\OrdersController@printAll');
+Route::post('/selected', 'Admin\\OrdersController@selectedItems');

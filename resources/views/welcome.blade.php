@@ -113,22 +113,27 @@
             <div class="row">
                 @include('admin.sidebar')
 
+            {{-- content --}}
+
                 <div class="col-md-9">
-                    {{--  <div class="card col-md-3">
-                        <div class="card-body">
-                            <form method="POST" action="Controllers.Admin.items" accept-charset="UTF-8" style="display:inline">
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-                                <br/>
-                                <h5 class="card-title text-info" >Name:</h5>{{ $item->name }}
-                                Item Code <input class="form-control" type="text" name="item_code" id="item_code" readonly >
-                                Item Price <input class="form-control" type="text" name="price" id="price" readonly>
-                            </form>
-
+                    <div class="row">
+                        @foreach($item as $item)
+                        <div class="col-md-4">
+                            <div class="card" style="margin-top: 10px;">
+                                <div class="card-body">
+                                    <form method="POST" action="Controllers.Admin.items" accept-charset="UTF-8" style="display:inline">
+                                        <img src="{{asset('images/items/'.$item->id)}}" alt="Image" style="width: 200px;"/>
+                                        <h5 class="card-title text-info" >Name:{{ $item->name }}</h5>
+                                        Item Code <input class="form-control" type="text" name="item_code" id="item_code" readonly >
+                                        Item Price <input class="form-control" type="text" name="price" id="price" readonly>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-
-
-                      </div>  --}}
+                        @endforeach
+                    </div>
                 </div>
+
             </div>
         </div>
 

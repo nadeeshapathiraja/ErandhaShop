@@ -47,6 +47,9 @@ class OrdersController extends Controller
                 ->latest()->paginate($perPage);
         } else {
             $orders = Order::latest()->paginate($perPage);
+            // $orders = Order::latest()->paginate($perPage)->groupBy(function ($orders) {
+            //     return $orders->created_at->format('M');
+            // });
         }
 
         return view('admin.orders.index', compact('orders', 'citys'));
@@ -66,56 +69,6 @@ class OrdersController extends Controller
 
         return view('admin.orders.create', compact('zones', 'categorys', 'deliverycompanys'));
     }
-
-    // public function store(Request $request)
-    // {
-
-
-    //     $requestData = $request->all();
-    //     $order = Order::create($requestData);
-    //     $price = $order->price;
-    //     $first_payment = $order->first_payment;
-    //     $id = $order->id;
-
-    //     $item = DB::table('items')->where('id', $order->item_id)->first();
-    //     $item_quantity = $item->quantity;
-    //     $item_price = $item->selling_price;
-
-    //     //get total price in order table
-    //     $order_price = DB::table('orders')->where('id', $id)->first();
-    //     $order_quantity = $order->quantity;
-
-
-    //     if ($order->delivery_process == 'Dispatch') {
-    //         $dispatchQuantity = $order->quantity;
-    //         $item = DB::table('items')->where('id', $order->item_id)->first();
-    //         $item_quantity = $item->quantity;
-    //         DB::table('items')->update(['quantity' => ($item_quantity - $dispatchQuantity)]);
-    //     } else if ($order->delivery_process == 'Return') {
-    //         $returnQuantity = $order->quantity;
-    //         $item = DB::table('items')->where('id', $order->item_id)->first();
-    //         $item_quantity = $item->quantity;
-    //         DB::table('items')->update(['quantity' => ($item_quantity + $returnQuantity)]);
-    //     } else if ($order->delivery_process == 'Pickup') {
-    //         $pickupQuantity = $order->quantity;
-    //         $item = DB::table('items')->where('id', $order->item_id)->first();
-    //         $item_quantity = $item->quantity;
-    //         DB::table('items')->update(['quantity' => ($item_quantity - $pickupQuantity)]);
-    //     }
-
-
-
-    //     $paymentType = new Paymenttype();
-    //     $paymentType->order_id = $order->id;
-    //     $paymentType->name = $order->name;
-    //     $paymentType->deposit_type = $order->deposit_type;
-    //     $paymentType->amount = $order->first_payment;
-    //     $paymentType->pay_to_future = (($item_price * $order_quantity) - $first_payment);
-
-    //     $paymentType->save();
-    //     return redirect('orders');
-    // }
-
 
     public function show($id)
     {
@@ -163,9 +116,12 @@ class OrdersController extends Controller
 
         $order = Order::findOrFail($id);
         $item = DB::table('items')->where('id', $order->item_id)->first();
+        return $order;
         $item_quantity = $item->quantity;
         $item_price = $item->selling_price;
         $order_price = $order->price;
+
+
 
         if ($item->quantity >= 0) {
             if ($order->delivery_process == 'Dispatch') {
@@ -327,6 +283,8 @@ class OrdersController extends Controller
         return view('admin.orders.orderselect', compact('orders'));
     }
 
+
+
     public function printAll()
     {
         $perPage = 10;
@@ -340,10 +298,10 @@ class OrdersController extends Controller
         $perPage = 10;
         $orders = array();
 
-        if( sizeof($selectedArray) > 0 ){
-            for($i=0; $i< sizeof($selectedArray); $i++){
+        if (sizeof($selectedArray) > 0) {
+            for ($i = 0; $i < sizeof($selectedArray); $i++) {
                 $order = Order::findOrFail($selectedArray[$i]);
-                array_push($orders,$order);
+                array_push($orders, $order);
             }
         }
 

@@ -44,6 +44,7 @@
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{ url('paymenttypes') }}">Order Transaction</a>
                     <a class="dropdown-item" href="{{ url('moneytransactions') }}">Money Transaction</a>
+                    <a class="dropdown-item" href="{{ url('supplyer-cost') }}">Supplyer Transaction</a>
                     <a class="dropdown-item" href="{{ url('payments') }}">Payment Log</a>
                 </div>
             </li><hr>

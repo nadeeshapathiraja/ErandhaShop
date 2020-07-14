@@ -56,7 +56,7 @@
                                             <td><input type="checkbox" class='checkbox' name="selectdata[]" value="{{ $order->id }}"></td>
                                             <td>{{ $order->id }}</td>
                                             <td>{{ $order->name }}</td>
-                                            <td>{{ $order->Location_address }}</td>
+                                            <td>{{ $order->Location_address }}</td>  
                                             <td>{{ $order->telephone }}</td>
                                         </tr>
                                     @endforeach
