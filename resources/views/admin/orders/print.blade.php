@@ -15,34 +15,78 @@
             @foreach($orders as $order)
             <div class="row" style="margin-top: 10px;border-style: double;">
                     {{-- from --}}
-                    <div class="col-md-6" style="margin-top: 10px;margin-right: 0px;border-right:double ">
-                        <div class="row" style="font-weight: bold;">
-                            <h4>From:</h4>
-                            <table class="table table-borderless">
-                                <tbody>
-                                  <tr>
-                                    <td>Name:</td>
-                                    <td>The Originals.LK</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Address:</td>
-                                    <pre><td>
-                                        No. 178,
-                                        Koswatta road,
-                                        Nawala
-                                        Rajagiriya
-                                    </td></pre>
-                                  </tr>
-                                  <tr>
-                                    <td>Teliphone Number:</td>
-                                    <td>0777813081</td>
-                                  </tr>
-                                </tbody>
-                              </table>
+                    <div class="col-md-6" style="margin-top: 10px;margin-right: 0px;border-right:double; ">
+                        <div class="row" style="font-weight: bold; ">
+                            <div class="card" style="width: 100%; font-size: 20px; ">
+                                <h4>From:</h4>
+                                <div class="card-body">
+                                    <div class="row" style="margin-top: 10px;">
+                                        <div class="col-md-5">Name :</div>
+                                        <div class="col-md-7">
+                                                <p class="card-text">The Originals.LK</p>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top: 10px;">
+                                        <div class="col-md-5">Address :</div>
+                                        <div class="col-md-7">
+                                                <p class="card-text">No. 178,</p>
+                                                <p class="card-text">Koswatta road,</p>
+                                                <p class="card-text">Nawala</p>
+                                                <p class="card-text">Rajagiriya</p>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top: 10px;">
+                                        <div class="col-md-5">Teliphone Number :</div>
+                                        <div class="col-md-7">
+                                            <p class="card-text">0777813081</p>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: center">
+                                        <img src="images/newlogo.jpg" class="img-fluid" style="width:150px;" alt="Responsive image">
+                                        <div style="font-size: 8px; font-weight: bold; margin-left: 38px;">www.Originals.com</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                     {{-- to --}}
-                    <div class="col-md-6" style="margin-top: 10px;">
+                <div class="col-md-6" style="margin-top: 10px;">
+                    <div class="row" style="font-weight: bold;">
+                        <div class="card" style="width: 100%; font-size: 20px;">
+                            <h4>To:</h4>
+                            <div class="card-body">
+                                <div class="row" style="margin-top: 10px;">
+                                    <div class="col-md-5">Tracking Number :</div>
+                                    <div class="col-md-7">
+                                            <p class="card-text">{{ $order->shipment_code }}</p>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 10px;">
+                                    <div class="col-md-5">Name :</div>
+                                    <div class="col-md-7">
+                                            <p class="card-text">{{ $order->name }}</p>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 10px;">
+                                    <div class="col-md-5">Address :</div>
+                                    <div class="col-md-7">
+                                        <textarea class="form-control" style="height: 180px; font-size: 20px; font-weight: bold; border: 0; margin-left: 0px;">
+                                            {{ $order->Location_address }}
+                                        </textarea>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 10px;">
+                                    <div class="col-md-5">Teliphone Number :</div>
+                                    <div class="col-md-7">
+                                        <p class="card-text">{{ $order->telephone }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+                    {{--
 
                         <div class="card">
 
@@ -56,20 +100,12 @@
                                     {{ $order->Location_address }}
                                 </textarea><br>
                                 <div class="row">
-                                    <div class="col-md-4">
                                         <div style="font-size: 22px; font-weight: bold;" maxlength="10">{{ $order->telephone }}</div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div style="text-align: left">
-                                            <img src="images/newlogo.jpg" class="img-fluid" style="width:150px;" alt="Responsive image">
-                                            <div style="font-size: 8px; font-weight: bold; margin-left: 38px;">www.Originals.com</div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
 
                         </div>
-                    </div>
+                    </div> --}}
 
 
             </div>
