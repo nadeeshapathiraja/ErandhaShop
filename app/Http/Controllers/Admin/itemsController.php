@@ -26,8 +26,9 @@ class itemsController extends Controller
         $perPage = 10;
 
         if (!empty($keyword)) {
-            $items = item::where('photo', 'LIKE', "%$keyword%")
-                ->orWhere('category_id', 'LIKE', "%$keyword%")
+            $items = DB::table('items')
+                ->leftJoin('categorys', 'categorys.id', '=', 'items.category_id')
+                ->orWhere('categorys.name', 'LIKE', "%$keyword%")
                 ->orWhere('product_code', 'LIKE', "%$keyword%")
                 ->orWhere('description', 'LIKE', "%$keyword%")
                 ->orWhere('quantity', 'LIKE', "%$keyword%")
@@ -38,9 +39,13 @@ class itemsController extends Controller
                 ->orWhere('clearance_charge', 'LIKE', "%$keyword%")
                 ->orWhere('slmarket_price', 'LIKE', "%$keyword%")
                 ->orWhere('selling_price', 'LIKE', "%$keyword%")
+                ->select('items.*', 'categorys.name AS cname')
                 ->latest()->paginate($perPage);
         } else {
-            $items = item::latest()->paginate($perPage);
+            $items =  $items = DB::table('items')
+                ->leftJoin('categorys', 'categorys.id', '=', 'items.category_id')
+                ->select('items.*', 'categorys.name AS cname')
+                ->latest()->paginate($perPage);
         }
 
 
@@ -137,9 +142,11 @@ class itemsController extends Controller
 
     public function cartItems()
     {
-        $perPage = 10;
-        $item = item::latest()->paginate($perPage);
-        return view('welcome ', compact('item'));
+        $perPage = 5;
+        $items = item::latest()->paginate($perPage);
+        // $item = item::all();
+        //$item = item::findOrFail($id);
+        return view('welcome ', compact('items'));
     }
 
 

@@ -117,23 +117,24 @@
 
                 <div class="col-md-9">
                     <div class="row">
-                        @foreach($item as $item)
+                        @foreach($items as $item)
                         <div class="col-md-4">
                             <div class="card" style="margin-top: 10px;">
                                 <div class="card-body">
                                     <form method="POST" action="Controllers.Admin.items" accept-charset="UTF-8" style="display:inline">
                                         <img src="{{asset('images/items/'.$item->id)}}" alt="Image" style="width: 200px;"/>
                                         <h5 class="card-title text-info" >Name:{{ $item->name }}</h5>
-                                        Item Code <input class="form-control" type="text" name="item_code" id="item_code" readonly >
-                                        Item Price <input class="form-control" type="text" name="price" id="price" readonly>
+                                        Item Code <input class="form-control" type="text" name="item_code" id="item_code" readonly value="{{ $item->product_code }}">
+                                        Item Quantity <input class="form-control" type="text" name="quantity" id="quantity" readonly value="{{ $item->quantity}}">
+                                        Item Price <input class="form-control" type="text" name="price" id="price" readonly value="{{ $item->selling_price}}">
                                     </form>
                                 </div>
                             </div>
                         </div>
                         @endforeach
                     </div>
+                    {{ $items->appends(Request::except('page'))->render() }}
                 </div>
-
             </div>
         </div>
 

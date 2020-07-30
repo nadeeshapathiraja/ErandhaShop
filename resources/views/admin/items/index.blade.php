@@ -5,10 +5,10 @@
         <div class="row">
             @include('admin.sidebar')
 
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header">Items</div>
-                    <div class="card-body">
+            <div class="col-md-9" >
+                <div class="card" style="width: 1000px" >
+                    <div class="card-header" style="width: 1000px">Items</div>
+                    <div class="card-body" style="width: 2000px">
                         <a href="{{ url('/items/create') }}" class="btn btn-success btn-sm" title="Add New item">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
@@ -41,7 +41,7 @@
                                 @foreach($items as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->category->name }}</td>
+                                        <td>{{ $item->cname}}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->product_code }}</td>
                                         <td>
