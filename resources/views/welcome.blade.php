@@ -120,13 +120,20 @@
                         @foreach($items as $item)
                         <div class="col-md-4">
                             <div class="card" style="margin-top: 10px;">
-                                <div class="card-body">
+                                <div class="card-body" style="height:500px;">
                                     <form method="POST" action="Controllers.Admin.items" accept-charset="UTF-8" style="display:inline">
-                                        <img src="{{asset('images/items/'.$item->id)}}" alt="Image" style="width: 200px;"/>
-                                        <h5 class="card-title text-info" >Name:{{ $item->name }}</h5>
-                                        Item Code <input class="form-control" type="text" name="item_code" id="item_code" readonly value="{{ $item->product_code }}">
-                                        Item Quantity <input class="form-control" type="text" name="quantity" id="quantity" readonly value="{{ $item->quantity}}">
-                                        Item Price <input class="form-control" type="text" name="price" id="price" readonly value="{{ $item->selling_price}}">
+                                        <div style="height: 210px">
+                                            <img src="{{asset('images/items/'.$item->id)}}" alt="Image" style="width: 200px;"/>
+                                        </div>
+                                        <div style="height: 50px;">
+                                            <label style="color: blue " >{{ $item->name }}</label>
+                                        </div>
+                                        <div style="margin-bottom: auto; margin-top: 5px;">
+                                            Item Code <input class="form-control" type="text" name="item_code" id="item_code" readonly value="{{ $item->product_code }}">
+                                            Item Quantity <input class="form-control" type="text" name="quantity" id="quantity" readonly value="{{ $item->quantity}}">
+                                            Item Price <input class="form-control" type="text" name="price" id="price" readonly value="{{ $item->selling_price}}">
+                                        </div>
+
                                     </form>
                                 </div>
                             </div>
